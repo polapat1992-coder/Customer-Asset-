@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", sans-serif;
+
+  /* Custom Brand Colors - Professional Real Estate Navy & Gold */
+  --color-blue-50: #f0f4f8;
+  --color-blue-100: #d9e2ec;
+  --color-blue-200: #bcccdc;
+  --color-blue-300: #9fb3c8;
+  --color-blue-400: #829ab1;
+  --color-blue-500: #627d98;
+  --color-blue-600: #1e3a8a; /* Deep Navy */
+  --color-blue-700: #102a43;
+  --color-blue-800: #243b53;
+  --color-blue-900: #102a43;
+  --color-blue-950: #0f172a;
+
+  --color-brand-gold: #d97706;
+  --color-brand-gold-light: #fef3c7;
+  
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-slate-900 bg-slate-50/50;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl shadow-slate-200/50;
+}
