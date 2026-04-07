@@ -515,52 +515,54 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
               </button>
             </div>
 
-            <div className="space-y-4">
-              <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-4 space-y-3">
-                <div className="flex items-center justify-between">
-                  <label className="text-sm font-bold text-blue-700 flex items-center">
-                    <ClipboardPaste className="w-4 h-4 mr-2 text-blue-500" /> 
-                    วางข้อมูลเจ้าของ (ชื่อและเบอร์โทร)
-                  </label>
-                  <span className="text-[10px] text-blue-500 font-medium bg-blue-100 px-2 py-0.5 rounded-full">
-                    Quick Paste
-                  </span>
-                </div>
-                <div className="relative">
-                  <textarea
-                    value={ownerQuickPaste}
-                    onChange={(e) => handleOwnerQuickPaste(e.target.value)}
-                    placeholder="วางชื่อและเบอร์โทรเจ้าของที่นี่ (Ctrl+V) (เช่น สมชาย 0812345678)..."
-                    className="w-full h-24 px-3 py-2 text-sm border border-blue-200 rounded-xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none resize-none bg-white/80"
-                  />
-                  <div className="absolute bottom-3 right-3 flex gap-2">
-                    {ownerQuickPaste && (
-                      <button
-                        type="button"
-                        onClick={() => setOwnerQuickPaste('')}
-                        className="bg-white text-slate-500 px-3 py-1.5 rounded-lg text-xs font-bold border border-slate-200 hover:bg-slate-50 transition-all"
-                      >
-                        ล้าง
-                      </button>
-                    )}
-                    {isClipboardReadSupported() && (
-                      <button
-                        type="button"
-                        onClick={handleOwnerPasteFromClipboard}
-                        className="bg-white text-blue-600 px-3 py-1.5 rounded-lg text-xs font-bold border border-blue-200 hover:bg-blue-50 transition-all flex items-center"
-                      >
-                        <ClipboardPaste className="w-3.5 h-3.5 mr-1.5" />
-                        วาง
-                      </button>
-                    )}
+            {formData.showOwnerInfo && (
+              <div className="space-y-4">
+                <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-bold text-blue-700 flex items-center">
+                      <ClipboardPaste className="w-4 h-4 mr-2 text-blue-500" /> 
+                      วางข้อมูลเจ้าของ (ชื่อและเบอร์โทร)
+                    </label>
+                    <span className="text-[10px] text-blue-500 font-medium bg-blue-100 px-2 py-0.5 rounded-full">
+                      Quick Paste
+                    </span>
                   </div>
+                  <div className="relative">
+                    <textarea
+                      value={ownerQuickPaste}
+                      onChange={(e) => handleOwnerQuickPaste(e.target.value)}
+                      placeholder="วางชื่อและเบอร์โทรเจ้าของที่นี่ (Ctrl+V) (เช่น สมชาย 0812345678)..."
+                      className="w-full h-24 px-3 py-2 text-sm border border-blue-200 rounded-xl focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none resize-none bg-white/80"
+                    />
+                    <div className="absolute bottom-3 right-3 flex gap-2">
+                      {ownerQuickPaste && (
+                        <button
+                          type="button"
+                          onClick={() => setOwnerQuickPaste('')}
+                          className="bg-white text-slate-500 px-3 py-1.5 rounded-lg text-xs font-bold border border-slate-200 hover:bg-slate-50 transition-all"
+                        >
+                          ล้าง
+                        </button>
+                      )}
+                      {isClipboardReadSupported() && (
+                        <button
+                          type="button"
+                          onClick={handleOwnerPasteFromClipboard}
+                          className="bg-white text-blue-600 px-3 py-1.5 rounded-lg text-xs font-bold border border-blue-200 hover:bg-blue-50 transition-all flex items-center"
+                        >
+                          <ClipboardPaste className="w-3.5 h-3.5 mr-1.5" />
+                          วาง
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                  {ownerPasteError && (
+                    <p className="text-[10px] text-red-500 mt-1 animate-pulse">{ownerPasteError}</p>
+                  )}
+                  <p className="text-[10px] text-blue-400 mt-1 italic">* ระบบจะแยกชื่อและเบอร์โทรให้อัตโนมัติ</p>
                 </div>
-                {ownerPasteError && (
-                  <p className="text-[10px] text-red-500 mt-1 animate-pulse">{ownerPasteError}</p>
-                )}
-              </div>
 
-              <div className="space-y-2">
+                <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 flex items-center">
                   <UserCheck className="w-4 h-4 mr-2 text-blue-500" /> เลือกเจ้าของจากรายการ / Select Owner
                 </label>
@@ -662,7 +664,8 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
               </div>
             </div>
           </div>
-        </div>
+        )}
+      </div>
 
         <div className="flex justify-end gap-3 pt-4">
           <button
