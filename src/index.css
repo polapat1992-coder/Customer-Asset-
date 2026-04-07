@@ -46,3 +46,23 @@
 .glass-card {
   @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl shadow-slate-200/50;
 }
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+
+  /* Ensure colors are printed */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

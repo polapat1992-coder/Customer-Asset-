@@ -21,7 +21,7 @@ export function BankOfficerDetailsDialog({
 
   return (
     <>
-      <Dialog isOpen={isOpen} onClose={onClose} title="รายละเอียดเจ้าหน้าที่ธนาคาร" maxWidth="max-w-md">
+      <Dialog isOpen={isOpen} onClose={onClose} title="Bank Officer Details" maxWidth="max-w-md">
         <div className="space-y-6">
           <div className="flex justify-between items-start border-b pb-4">
             <div className="flex items-center">
@@ -39,7 +39,7 @@ export function BankOfficerDetailsDialog({
                   onClick={() => onEdit(officer)}
                   className="p-2 text-blue-600 hover:bg-blue-50 rounded-md transition-colors flex items-center text-sm font-medium"
                 >
-                  <Edit2 className="w-4 h-4 mr-1.5" /> แก้ไข
+                  <Edit2 className="w-4 h-4 mr-1.5" /> Edit
                 </button>
               )}
               {onDelete && (
@@ -47,7 +47,7 @@ export function BankOfficerDetailsDialog({
                   onClick={() => setIsDeleteConfirmOpen(true)}
                   className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors flex items-center text-sm font-medium"
                 >
-                  <Trash2 className="w-4 h-4 mr-1.5" /> ลบ
+                  <Trash2 className="w-4 h-4 mr-1.5" /> Delete
                 </button>
               )}
             </div>
@@ -58,7 +58,7 @@ export function BankOfficerDetailsDialog({
               <div className="flex items-center text-gray-700">
                 <Phone className="w-5 h-5 text-gray-400 mr-3" />
                 <div>
-                  <p className="text-xs text-gray-500">เบอร์โทรศัพท์</p>
+                  <p className="text-xs text-gray-500">Phone Number</p>
                   <p className="font-medium">{officer.phone}</p>
                 </div>
               </div>
@@ -84,7 +84,7 @@ export function BankOfficerDetailsDialog({
                       rel="noopener noreferrer"
                       className="text-sm font-medium text-blue-600 hover:underline flex items-center"
                     >
-                      ดูโปรไฟล์ <ExternalLink className="w-3 h-3 ml-1" />
+                      View Profile <ExternalLink className="w-3 h-3 ml-1" />
                     </a>
                   </div>
                 </div>
@@ -93,10 +93,10 @@ export function BankOfficerDetailsDialog({
 
             <div className="border rounded-xl p-4">
               <h4 className="text-sm font-semibold text-gray-900 mb-2 flex items-center">
-                <FileText className="w-4 h-4 mr-2 text-gray-400" /> หมายเหตุ
+                <FileText className="w-4 h-4 mr-2 text-gray-400" /> Notes
               </h4>
               <p className="text-sm text-gray-600 whitespace-pre-wrap">
-                {officer.notes || 'ไม่มีหมายเหตุ'}
+                {officer.notes || 'No notes'}
               </p>
             </div>
           </div>
@@ -110,9 +110,9 @@ export function BankOfficerDetailsDialog({
           onDelete?.(officer.id);
           onClose();
         }}
-        title="ยืนยันการลบ"
-        message={`คุณต้องการลบข้อมูลเจ้าหน้าที่ธนาคาร "${officer.name}" ใช่หรือไม่?`}
-        confirmText="ลบข้อมูล"
+        title="Confirm Deletion"
+        message={`Are you sure you want to delete bank officer "${officer.name}"?`}
+        confirmText="Delete Data"
         variant="danger"
       />
     </>

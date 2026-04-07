@@ -52,11 +52,33 @@ export interface PropertyDetails {
   zone?: string;
   images?: string[];
   specifications: PropertySpecifications;
+  ownerId?: string;
+  showOwnerInfo?: boolean;
   ownerName?: string;
   ownerPhone?: string;
+  ownerEmail?: string;
   lineId?: string;
   facebookUrl?: string;
+  ownerAddress?: string;
   mapUrl?: string;
+}
+
+export interface Owner {
+  id: string;
+  name: string;
+  phone: string;
+  email?: string;
+  lineId?: string;
+  facebookUrl?: string;
+  address?: string;
+  ownerType: 'INDIVIDUAL' | 'COMPANY';
+  bankAccount?: {
+    bankName: string;
+    accountName: string;
+    accountNumber: string;
+  };
+  notes?: string;
+  createdAt: string;
 }
 
 export type PropertyType = 'HOUSE' | 'CONDO' | 'TOWNHOUSE' | 'SEMI_DETACHED' | 'RENOVATED' | 'USED' | 'LAND';

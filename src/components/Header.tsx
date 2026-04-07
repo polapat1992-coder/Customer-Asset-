@@ -36,7 +36,7 @@ export function Header({ notifications, onSearch, onOpenNotifications, onMenuCli
             <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" />
             <input 
               type="text"
-              placeholder="ค้นหาลูกค้า, ทรัพย์สิน, หรือนัดหมาย..."
+              placeholder="Search customers, properties, or appointments..."
               onChange={(e) => onSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-2xl bg-slate-50/50 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all text-sm"
             />

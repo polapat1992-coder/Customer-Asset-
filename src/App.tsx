@@ -26,10 +26,13 @@ import { CalendarView } from './components/CalendarView';
 import { AppointmentForm } from './components/AppointmentForm';
 import { SettingsView } from './components/SettingsView';
 import { AIAssistant } from './components/AIAssistant';
-import { mockCustomers, mockProperties, mockPartners, mockNotifications, mockBankOfficers, mockAppointments } from './data/mock';
-import { Customer, PropertyDetails, PartnerDetails, LoanStatus, BankOfficer, Appointment } from './types';
-import { Plus, Users, CheckCircle, Clock, AlertCircle, Filter, Landmark, Download, Search, MapPin } from 'lucide-react';
+import { mockCustomers, mockProperties, mockPartners, mockNotifications, mockBankOfficers, mockAppointments, mockOwners } from './data/mock';
+import { Customer, PropertyDetails, PartnerDetails, LoanStatus, BankOfficer, Appointment, Owner } from './types';
+import { Plus, Users, CheckCircle, Clock, AlertCircle, Filter, Landmark, Download, Search, MapPin, UserCheck } from 'lucide-react';
 import { cn } from './lib/utils';
+import { OwnerCard } from './components/OwnerCard';
+import { OwnerForm } from './components/OwnerForm';
+import { OwnerDetailsDialog } from './components/OwnerDetailsDialog';
 
 export default function App() {
   const [activeView, setActiveView] = useState<ViewType>('DASHBOARD');
@@ -39,6 +42,7 @@ export default function App() {
   const [partners, setPartners] = useState<PartnerDetails[]>(mockPartners);
   const [bankOfficers, setBankOfficers] = useState<BankOfficer[]>(mockBankOfficers);
   const [appointments, setAppointments] = useState<Appointment[]>(mockAppointments);
+  const [owners, setOwners] = useState<Owner[]>(mockOwners);
   const [notifications, setNotifications] = useState(mockNotifications);
   
   const [searchQuery, setSearchQuery] = useState('');
@@ -50,18 +54,22 @@ export default function App() {
   const [isPropertyFormOpen, setIsPropertyFormOpen] = useState(false);
   const [isPartnerFormOpen, setIsPartnerFormOpen] = useState(false);
   const [isBankOfficerFormOpen, setIsBankOfficerFormOpen] = useState(false);
+  const [isOwnerFormOpen, setIsOwnerFormOpen] = useState(false);
   const [isAppointmentFormOpen, setIsAppointmentFormOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [editingProperty, setEditingProperty] = useState<PropertyDetails | null>(null);
   const [editingPartner, setEditingPartner] = useState<PartnerDetails | null>(null);
   const [editingBankOfficer, setEditingBankOfficer] = useState<BankOfficer | null>(null);
+  const [editingOwner, setEditingOwner] = useState<Owner | null>(null);
   const [editingAppointment, setEditingAppointment] = useState<Appointment | null>(null);
   
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
   const [selectedProperty, setSelectedProperty] = useState<PropertyDetails | null>(null);
   const [selectedPartner, setSelectedPartner] = useState<PartnerDetails | null>(null);
   const [selectedBankOfficer, setSelectedBankOfficer] = useState<BankOfficer | null>(null);
+  const [selectedOwner, setSelectedOwner] = useState<Owner | null>(null);
+  const [propertyViewMode, setPropertyViewMode] = useState<'admin' | 'customer'>('admin');
 
   const filteredCustomers = useMemo(() => {
     return customers.filter(c => {
@@ -82,7 +90,8 @@ export default function App() {
       const matchesSearch = !searchQuery || 
         p.name.toLowerCase().includes(lowerQuery) || 
         p.location.toLowerCase().includes(lowerQuery) ||
-        (p.zone && p.zone.toLowerCase().includes(lowerQuery));
+        (p.zone && p.zone.toLowerCase().includes(lowerQuery)) ||
+        (p.ownerName && p.ownerName.toLowerCase().includes(lowerQuery));
         
       const matchesZone = !propertyZoneFilter || 
         (p.zone && p.zone.toLowerCase().includes(lowerZone));
@@ -90,6 +99,15 @@ export default function App() {
       return matchesSearch && matchesZone;
     });
   }, [properties, searchQuery, propertyZoneFilter]);
+
+  const filteredOwners = useMemo(() => {
+    return owners.filter(o => {
+      const lowerQuery = searchQuery.toLowerCase();
+      return !searchQuery || 
+        o.name.toLowerCase().includes(lowerQuery) || 
+        o.phone.includes(lowerQuery);
+    });
+  }, [owners, searchQuery]);
 
   const stats = useMemo(() => {
     return {
@@ -155,6 +173,27 @@ export default function App() {
         id: `bo${Date.now()}`,
       } as BankOfficer;
       setBankOfficers([newOfficer, ...bankOfficers]);
+    }
+  };
+
+  const handleAddOrEditOwner = (data: Partial<Owner>) => {
+    if (editingOwner) {
+      setOwners(prev => prev.map(o => o.id === editingOwner.id ? { ...o, ...data } as Owner : o));
+      setEditingOwner(null);
+    } else {
+      const newOwner: Owner = {
+        ...data,
+        id: `o${Date.now()}`,
+        createdAt: new Date().toISOString(),
+      } as Owner;
+      setOwners([newOwner, ...owners]);
+    }
+  };
+
+  const handleDeleteOwner = (id: string) => {
+    if (window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลเจ้าของนี้?')) {
+      setOwners(prev => prev.filter(o => o.id !== id));
+      setSelectedOwner(null);
     }
   };
 
@@ -400,7 +439,14 @@ export default function App() {
             <PropertyCard 
               key={property.id} 
               property={property} 
-              onClick={() => setSelectedProperty(property)}
+              onClick={() => {
+                setPropertyViewMode('admin');
+                setSelectedProperty(property);
+              }}
+              onShare={() => {
+                setPropertyViewMode('customer');
+                setSelectedProperty(property);
+              }}
             />
           ))}
         </div>
@@ -432,6 +478,43 @@ export default function App() {
           />
         ))}
       </div>
+    </div>
+  );
+
+  const renderOwnersView = () => (
+    <div className="space-y-6 animate-in fade-in duration-500">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-gray-900">รายการเจ้าของทรัพย์ (Owners)</h2>
+        <button 
+          onClick={() => {
+            setEditingOwner(null);
+            setIsOwnerFormOpen(true);
+          }}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl flex items-center font-black text-xs uppercase tracking-widest transition-all shadow-lg shadow-blue-200 active:scale-95"
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          เพิ่มเจ้าของทรัพย์
+        </button>
+      </div>
+      
+      {filteredOwners.length === 0 ? (
+        <EmptyState />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredOwners.map(owner => (
+            <OwnerCard 
+              key={owner.id} 
+              owner={owner} 
+              onEdit={(o) => {
+                setEditingOwner(o);
+                setIsOwnerFormOpen(true);
+              }}
+              onDelete={handleDeleteOwner}
+              onClick={setSelectedOwner}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 
@@ -503,6 +586,7 @@ export default function App() {
           )}
           {activeView === 'CUSTOMERS' && renderCustomersView()}
           {activeView === 'PROPERTIES' && renderPropertiesView()}
+          {activeView === 'OWNERS' && renderOwnersView()}
           {activeView === 'PARTNERS' && renderPartnersView()}
           {activeView === 'BANK_OFFICERS' && renderBankOfficersView()}
           {activeView === 'CALCULATOR' && <div className="animate-in fade-in duration-500"><LoanCalculator /></div>}
@@ -533,6 +617,7 @@ export default function App() {
         partner={partners.find(p => p.id === selectedCustomer?.partnerId)}
         bankOfficers={bankOfficers}
         onViewProperty={(prop) => {
+          setPropertyViewMode('admin');
           setSelectedProperty(prop);
         }}
         onViewPartner={() => {
@@ -559,6 +644,7 @@ export default function App() {
         }}
         onSubmit={handleAddOrEditProperty}
         initialData={editingProperty}
+        owners={owners}
       />
 
       <PropertyDetailsDialog
@@ -566,6 +652,8 @@ export default function App() {
         onClose={() => setSelectedProperty(null)}
         property={selectedProperty}
         customers={customers}
+        owners={owners}
+        initialViewMode={propertyViewMode}
         onEdit={(property) => {
           setSelectedProperty(null);
           setEditingProperty(property);
@@ -598,6 +686,18 @@ export default function App() {
         }}
         onSubmit={handleAddOrEditPartner}
         initialData={editingPartner}
+      />
+
+      <OwnerDetailsDialog
+        isOpen={!!selectedOwner}
+        onClose={() => setSelectedOwner(null)}
+        owner={selectedOwner}
+        properties={properties}
+        onViewProperty={(prop) => {
+          setSelectedOwner(null);
+          setSelectedProperty(prop);
+          setActiveView('PROPERTIES');
+        }}
       />
 
       <BankOfficerDetailsDialog

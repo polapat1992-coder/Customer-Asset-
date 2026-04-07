@@ -1,8 +1,8 @@
-import { Home, Users, Building, Calculator, Settings, LogOut, X, LayoutDashboard, Landmark, Calendar } from 'lucide-react';
+import { Home, Users, Building, Calculator, Settings, LogOut, X, LayoutDashboard, Landmark, Calendar, UserCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 
-export type ViewType = 'DASHBOARD' | 'CUSTOMERS' | 'PROPERTIES' | 'PARTNERS' | 'BANK_OFFICERS' | 'CALCULATOR' | 'CALENDAR' | 'SETTINGS';
+export type ViewType = 'DASHBOARD' | 'CUSTOMERS' | 'PROPERTIES' | 'PARTNERS' | 'BANK_OFFICERS' | 'OWNERS' | 'CALCULATOR' | 'CALENDAR' | 'SETTINGS';
 
 interface SidebarProps {
   activeView: ViewType;
@@ -13,19 +13,20 @@ interface SidebarProps {
 
 export function Sidebar({ activeView, onViewChange, isOpen, onClose }: SidebarProps) {
   const menuItems = [
-    { id: 'DASHBOARD', label: 'แดชบอร์ด', icon: LayoutDashboard },
-    { id: 'CALENDAR', label: 'ปฏิทินนัดหมาย', icon: Calendar },
-    { id: 'CUSTOMERS', label: 'ลูกค้า', icon: Users },
-    { id: 'PROPERTIES', label: 'ทรัพย์สิน', icon: Home },
-    { id: 'BANK_OFFICERS', label: 'เจ้าหน้าที่ธนาคาร', icon: Landmark },
-    { id: 'PARTNERS', label: 'พันธมิตร', icon: Building },
-    { id: 'CALCULATOR', label: 'เครื่องคำนวณกู้', icon: Calculator },
+    { id: 'DASHBOARD', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'CALENDAR', label: 'Calendar', icon: Calendar },
+    { id: 'CUSTOMERS', label: 'Customers', icon: Users },
+    { id: 'PROPERTIES', label: 'Properties', icon: Home },
+    { id: 'OWNERS', label: 'Owners', icon: UserCheck },
+    { id: 'BANK_OFFICERS', label: 'Bank Officers', icon: Landmark },
+    { id: 'PARTNERS', label: 'Partners', icon: Building },
+    { id: 'CALCULATOR', label: 'Loan Calculator', icon: Calculator },
   ] as const;
 
   const SidebarContent = (
     <div className="flex flex-col h-full bg-white border-r border-slate-100">
       <div className="p-4 border-b border-slate-50 flex items-center justify-between lg:hidden">
-        <span className="font-bold text-blue-600">เมนูหลัก</span>
+        <span className="font-bold text-blue-600">Main Menu</span>
         <button onClick={onClose} className="p-2 text-slate-400 hover:bg-slate-50 rounded-xl transition-colors">
           <X className="w-5 h-5" />
         </button>
@@ -66,11 +67,11 @@ export function Sidebar({ activeView, onViewChange, isOpen, onClose }: SidebarPr
           )}
         >
           <Settings className={cn("w-5 h-5 transition-colors", activeView === 'SETTINGS' ? "text-white" : "text-slate-400")} />
-          ตั้งค่าระบบ
+          Settings
         </button>
         <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-red-500 hover:bg-red-50 transition-all">
           <LogOut className="w-5 h-5 text-red-400" />
-          ออกจากระบบ
+          Logout
         </button>
       </div>
     </div>

@@ -10,12 +10,12 @@ interface BankOfficerCardProps {
 const getBankStyles = (bankName: string) => {
   const name = bankName.toUpperCase();
   if (name.includes('SCB')) return { bg: 'bg-purple-100', text: 'text-purple-600', hover: 'group-hover:bg-purple-600', badge: 'bg-purple-50 text-purple-600', hoverText: 'group-hover:text-purple-600' };
-  if (name.includes('KBANK') || name.includes('กสิกร')) return { bg: 'bg-green-100', text: 'text-green-600', hover: 'group-hover:bg-green-600', badge: 'bg-green-50 text-green-600', hoverText: 'group-hover:text-green-600' };
-  if (name.includes('BBL') || name.includes('กรุงเทพ')) return { bg: 'bg-blue-100', text: 'text-blue-600', hover: 'group-hover:bg-blue-600', badge: 'bg-blue-50 text-blue-700', hoverText: 'group-hover:text-blue-600' };
-  if (name.includes('KTB') || name.includes('กรุงไทย')) return { bg: 'bg-cyan-100', text: 'text-cyan-600', hover: 'group-hover:bg-cyan-600', badge: 'bg-cyan-50 text-cyan-700', hoverText: 'group-hover:text-cyan-600' };
-  if (name.includes('BAY') || name.includes('กรุงศรี')) return { bg: 'bg-yellow-100', text: 'text-yellow-600', hover: 'group-hover:bg-yellow-600', badge: 'bg-yellow-50 text-yellow-700', hoverText: 'group-hover:text-yellow-600' };
-  if (name.includes('GSB') || name.includes('ออมสิน')) return { bg: 'bg-pink-100', text: 'text-pink-600', hover: 'group-hover:bg-pink-600', badge: 'bg-pink-50 text-pink-700', hoverText: 'group-hover:text-pink-600' };
-  if (name.includes('GHB') || name.includes('อาคารสงเคราะห์')) return { bg: 'bg-orange-100', text: 'text-orange-600', hover: 'group-hover:bg-orange-600', badge: 'bg-orange-50 text-orange-700', hoverText: 'group-hover:text-orange-600' };
+  if (name.includes('KBANK') || name.includes('KASIKORN')) return { bg: 'bg-green-100', text: 'text-green-600', hover: 'group-hover:bg-green-600', badge: 'bg-green-50 text-green-600', hoverText: 'group-hover:text-green-600' };
+  if (name.includes('BBL') || name.includes('BANGKOK')) return { bg: 'bg-blue-100', text: 'text-blue-600', hover: 'group-hover:bg-blue-600', badge: 'bg-blue-50 text-blue-700', hoverText: 'group-hover:text-blue-600' };
+  if (name.includes('KTB') || name.includes('KRUNGTHAI')) return { bg: 'bg-cyan-100', text: 'text-cyan-600', hover: 'group-hover:bg-cyan-600', badge: 'bg-cyan-50 text-cyan-700', hoverText: 'group-hover:text-cyan-600' };
+  if (name.includes('BAY') || name.includes('KRUNGSRI')) return { bg: 'bg-yellow-100', text: 'text-yellow-600', hover: 'group-hover:bg-yellow-600', badge: 'bg-yellow-50 text-yellow-700', hoverText: 'group-hover:text-yellow-600' };
+  if (name.includes('GSB') || name.includes('GOVERNMENT SAVINGS')) return { bg: 'bg-pink-100', text: 'text-pink-600', hover: 'group-hover:bg-pink-600', badge: 'bg-pink-50 text-pink-700', hoverText: 'group-hover:text-pink-600' };
+  if (name.includes('GHB') || name.includes('GOVERNMENT HOUSING')) return { bg: 'bg-orange-100', text: 'text-orange-600', hover: 'group-hover:bg-orange-600', badge: 'bg-orange-50 text-orange-700', hoverText: 'group-hover:text-orange-600' };
   if (name.includes('TTB')) return { bg: 'bg-blue-100', text: 'text-blue-600', hover: 'group-hover:bg-blue-600', badge: 'bg-blue-50 text-blue-700', hoverText: 'group-hover:text-blue-600' };
   return { bg: 'bg-gray-100', text: 'text-gray-600', hover: 'group-hover:bg-gray-600', badge: 'bg-gray-50 text-gray-600', hoverText: 'group-hover:text-gray-600' };
 };

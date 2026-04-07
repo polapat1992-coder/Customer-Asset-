@@ -13,13 +13,13 @@ const statusColors = {
 };
 
 const statusLabels = {
-  NEW: 'ลูกค้าใหม่',
-  DOCUMENT_COLLECTION: 'รอเอกสาร',
-  PRE_APPROVE: 'พรีแอปพรูฟ',
-  SUBMITTED: 'ยื่นกู้แล้ว',
-  APPROVED: 'อนุมัติแล้ว',
-  REJECTED: 'ปฏิเสธ',
-  TRANSFERRED: 'โอนแล้ว',
+  NEW: 'New Customer',
+  DOCUMENT_COLLECTION: 'Docs Collection',
+  PRE_APPROVE: 'Pre-Approve',
+  SUBMITTED: 'Submitted',
+  APPROVED: 'Approved',
+  REJECTED: 'Rejected',
+  TRANSFERRED: 'Transferred',
 };
 
 interface CustomerCardProps {
@@ -74,9 +74,9 @@ export function CustomerCard({ customer, onClick }: CustomerCardProps) {
         <div className="flex items-center gap-5">
           <div className="flex items-center text-slate-400 group-hover:text-blue-600 transition-colors">
             {customer.propertyIds && customer.propertyIds.length > 0 ? (
-              <><Building2 className="w-4 h-4 mr-2 text-blue-500" /> ทรัพย์สิน ({customer.propertyIds.length})</>
+              <><Building2 className="w-4 h-4 mr-2 text-blue-500" /> Properties ({customer.propertyIds.length})</>
             ) : (
-              <><Building2 className="w-4 h-4 mr-2 text-slate-200" /> ไม่มีทรัพย์สิน</>
+              <><Building2 className="w-4 h-4 mr-2 text-slate-200" /> No Properties</>
             )}
           </div>
           {customer.notes && customer.notes.length > 0 && (
@@ -87,7 +87,7 @@ export function CustomerCard({ customer, onClick }: CustomerCardProps) {
           )}
         </div>
         <div className="text-blue-600 flex items-center opacity-0 group-hover:opacity-100 transition-all transform translate-x-2 group-hover:translate-x-0">
-          รายละเอียด <ChevronRight className="w-4 h-4 ml-1" />
+          Details <ChevronRight className="w-4 h-4 ml-1" />
         </div>
       </div>
     </div>

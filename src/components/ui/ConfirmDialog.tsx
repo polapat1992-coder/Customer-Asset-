@@ -13,7 +13,7 @@ interface ConfirmDialogProps {
 
 export function ConfirmDialog({ 
   isOpen, onClose, onConfirm, title, message, 
-  confirmText = 'ยืนยัน', cancelText = 'ยกเลิก', variant = 'primary' 
+  confirmText = 'Confirm', cancelText = 'Cancel', variant = 'primary' 
 }: ConfirmDialogProps) {
   return (
     <Dialog isOpen={isOpen} onClose={onClose} title={title} maxWidth="max-w-sm">

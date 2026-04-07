@@ -19,18 +19,18 @@ export function SettingsView() {
   const [activeTab, setActiveTab] = useState('GENERAL');
 
   const tabs = [
-    { id: 'GENERAL', label: 'ข้อมูลทั่วไป', icon: Globe },
-    { id: 'NOTIFICATIONS', label: 'การแจ้งเตือน', icon: Bell },
-    { id: 'SECURITY', label: 'ความปลอดภัย', icon: Shield },
-    { id: 'ROLES', label: 'สิทธิ์การใช้งาน', icon: User },
-    { id: 'INTEGRATIONS', label: 'การเชื่อมต่อ', icon: Cloud },
+    { id: 'GENERAL', label: 'General Info', icon: Globe },
+    { id: 'NOTIFICATIONS', label: 'Notifications', icon: Bell },
+    { id: 'SECURITY', label: 'Security', icon: Shield },
+    { id: 'ROLES', label: 'User Roles', icon: User },
+    { id: 'INTEGRATIONS', label: 'Integrations', icon: Cloud },
   ];
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col gap-1">
-        <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">ตั้งค่าระบบ</h2>
-        <p className="text-slate-500 font-medium">จัดการการตั้งค่าแอปพลิเคชันและสิทธิ์การเข้าถึง</p>
+        <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">System Settings</h2>
+        <p className="text-slate-500 font-medium">Manage application settings and access permissions</p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
@@ -60,19 +60,19 @@ export function SettingsView() {
               <section className="space-y-6">
                 <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                   <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
-                  การตั้งค่าพื้นฐาน
+                  Basic Settings
                 </h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest">สกุลเงินเริ่มต้น</label>
+                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Default Currency</label>
                     <select className="w-full px-4 py-3 rounded-2xl border border-slate-100 bg-slate-50/50 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all text-sm font-bold">
-                      <option value="THB">บาท (THB)</option>
-                      <option value="USD">ดอลลาร์สหรัฐ (USD)</option>
+                      <option value="THB">Baht (THB)</option>
+                      <option value="USD">US Dollar (USD)</option>
                     </select>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest">รูปแบบวันที่</label>
+                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Date Format</label>
                     <select className="w-full px-4 py-3 rounded-2xl border border-slate-100 bg-slate-50/50 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all text-sm font-bold">
                       <option value="DD/MM/YYYY">DD/MM/YYYY</option>
                       <option value="MM/DD/YYYY">MM/DD/YYYY</option>
@@ -85,12 +85,12 @@ export function SettingsView() {
               <section className="space-y-6 pt-8 border-t border-slate-50">
                 <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                   <div className="w-1.5 h-6 bg-brand-gold rounded-full"></div>
-                  ข้อมูลบริษัท
+                  Company Information
                 </h3>
                 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest">ชื่อบริษัท</label>
+                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Company Name</label>
                     <input 
                       type="text" 
                       defaultValue="BrokerCRM Real Estate"
@@ -99,7 +99,7 @@ export function SettingsView() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-xs font-black text-slate-400 uppercase tracking-widest">อีเมลติดต่อ</label>
+                      <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Contact Email</label>
                       <input 
                         type="email" 
                         defaultValue="contact@brokercrm.com"
@@ -107,7 +107,7 @@ export function SettingsView() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-xs font-black text-slate-400 uppercase tracking-widest">เบอร์โทรศัพท์</label>
+                      <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Phone Number</label>
                       <input 
                         type="tel" 
                         defaultValue="02-123-4567"
@@ -120,7 +120,7 @@ export function SettingsView() {
 
               <div className="flex justify-end pt-4">
                 <button className="bg-blue-600 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 active:scale-95">
-                  บันทึกการเปลี่ยนแปลง
+                  Save Changes
                 </button>
               </div>
             </div>
@@ -130,14 +130,14 @@ export function SettingsView() {
             <div className="glass-card rounded-3xl p-8 space-y-8">
               <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                 <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
-                ตั้งค่าการแจ้งเตือน
+                Notification Settings
               </h3>
 
               <div className="space-y-4">
                 {[
-                  { id: 'email', label: 'อีเมลแจ้งเตือนนัดหมาย', desc: 'ส่งอีเมลเมื่อมีการนัดหมายใหม่หรือเปลี่ยนแปลง', icon: Mail },
-                  { id: 'push', label: 'การแจ้งเตือนบนเบราว์เซอร์', desc: 'แสดงการแจ้งเตือนทันทีบนหน้าจอ', icon: Bell },
-                  { id: 'sms', label: 'SMS แจ้งเตือนลูกค้า', desc: 'ส่งข้อความยืนยันนัดหมายให้ลูกค้าอัตโนมัติ', icon: Smartphone },
+                  { id: 'email', label: 'Email Notifications', desc: 'Send email for new appointments or changes', icon: Mail },
+                  { id: 'push', label: 'Browser Push Notifications', desc: 'Show instant notifications on screen', icon: Bell },
+                  { id: 'sms', label: 'Customer SMS Alerts', desc: 'Automatically send confirmation SMS to customers', icon: Smartphone },
                 ].map((item) => (
                   <div key={item.id} className="flex items-center justify-between p-4 rounded-2xl border border-slate-50 hover:border-slate-100 transition-all group">
                     <div className="flex items-center gap-4">
@@ -164,10 +164,10 @@ export function SettingsView() {
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                   <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
-                  จัดการสิทธิ์การใช้งาน
+                  Manage User Roles
                 </h3>
                 <button className="text-xs font-black text-blue-600 uppercase tracking-widest hover:underline">
-                  + เพิ่มบทบาทใหม่
+                  + Add New Role
                 </button>
               </div>
 
@@ -175,9 +175,9 @@ export function SettingsView() {
                 <table className="w-full text-left border-collapse">
                   <thead className="bg-slate-50/50">
                     <tr>
-                      <th className="px-6 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">บทบาท</th>
-                      <th className="px-6 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">ผู้ใช้งาน</th>
-                      <th className="px-6 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">การเข้าถึง</th>
+                      <th className="px-6 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Role</th>
+                      <th className="px-6 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Users</th>
+                      <th className="px-6 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Access</th>
                       <th className="px-6 py-4"></th>
                     </tr>
                   </thead>
@@ -189,7 +189,7 @@ export function SettingsView() {
                     ].map((row, i) => (
                       <tr key={i} className="hover:bg-slate-50/30 transition-colors">
                         <td className="px-6 py-4 text-sm font-bold text-slate-900">{row.role}</td>
-                        <td className="px-6 py-4 text-sm font-medium text-slate-500">{row.users} คน</td>
+                        <td className="px-6 py-4 text-sm font-medium text-slate-500">{row.users} users</td>
                         <td className="px-6 py-4">
                           <span className="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-black uppercase tracking-widest">
                             {row.access}

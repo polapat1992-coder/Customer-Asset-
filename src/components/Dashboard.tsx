@@ -7,7 +7,7 @@ import { Customer, Appointment } from '../types';
 import { Users, CheckCircle, Clock, AlertCircle, TrendingUp, Wallet, Calendar, MapPin } from 'lucide-react';
 import { formatCurrency, cn } from '../lib/utils';
 import { isAfter, isSameDay, parseISO } from 'date-fns';
-import { th } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 import { format } from 'date-fns';
 
 interface DashboardProps {
@@ -46,9 +46,9 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
   }, [appointments]);
 
   const statusData = useMemo(() => [
-    { name: 'อนุมัติแล้ว', value: stats.approved, color: '#10b981' },
-    { name: 'กำลังดำเนินการ', value: stats.pending, color: '#f59e0b' },
-    { name: 'ไม่ผ่าน', value: stats.rejected, color: '#ef4444' },
+    { name: 'Approved', value: stats.approved, color: '#10b981' },
+    { name: 'In Progress', value: stats.pending, color: '#f59e0b' },
+    { name: 'Rejected', value: stats.rejected, color: '#ef4444' },
   ], [stats]);
 
   const occupationData = useMemo(() => {
@@ -66,8 +66,8 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
   return (
     <div className="space-y-8">
       <div className="flex flex-col gap-1">
-        <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">ภาพรวมระบบ</h2>
-        <p className="text-slate-500 font-medium">สรุปข้อมูลลูกค้าและสถานะการยื่นกู้ทั้งหมด</p>
+        <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Dashboard Overview</h2>
+        <p className="text-slate-500 font-medium">Summary of customers and loan application status</p>
       </div>
 
       {/* Stats Cards */}
@@ -79,8 +79,8 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
             </div>
             <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg">+12%</span>
           </div>
-          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">ลูกค้าทั้งหมด</p>
-          <h3 className="text-3xl font-black text-slate-900 mt-1">{stats.total} <span className="text-sm font-bold text-slate-400">ราย</span></h3>
+          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Total Customers</p>
+          <h3 className="text-3xl font-black text-slate-900 mt-1">{stats.total} <span className="text-sm font-bold text-slate-400">cases</span></h3>
         </div>
 
         <div className="glass-card p-6 rounded-2xl">
@@ -90,8 +90,8 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
             </div>
             <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">85%</span>
           </div>
-          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">อนุมัติแล้ว</p>
-          <h3 className="text-3xl font-black text-slate-900 mt-1">{stats.approved} <span className="text-sm font-bold text-slate-400">ราย</span></h3>
+          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Approved</p>
+          <h3 className="text-3xl font-black text-slate-900 mt-1">{stats.approved} <span className="text-sm font-bold text-slate-400">cases</span></h3>
         </div>
 
         <div className="glass-card p-6 rounded-2xl">
@@ -99,10 +99,10 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
             <div className="w-12 h-12 bg-brand-gold rounded-xl flex items-center justify-center shadow-lg shadow-amber-100">
               <Clock className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xs font-bold text-brand-gold bg-amber-50 px-2.5 py-1 rounded-lg">รอดำเนินการ</span>
+            <span className="text-xs font-bold text-brand-gold bg-amber-50 px-2.5 py-1 rounded-lg">Pending</span>
           </div>
-          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">กำลังดำเนินการ</p>
-          <h3 className="text-3xl font-black text-slate-900 mt-1">{stats.pending} <span className="text-sm font-bold text-slate-400">ราย</span></h3>
+          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">In Progress</p>
+          <h3 className="text-3xl font-black text-slate-900 mt-1">{stats.pending} <span className="text-sm font-bold text-slate-400">cases</span></h3>
         </div>
 
         <div className="glass-card p-6 rounded-2xl">
@@ -112,7 +112,7 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
             </div>
             <TrendingUp className="w-4 h-4 text-emerald-500" />
           </div>
-          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">รายได้เฉลี่ยลูกค้า</p>
+          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Avg. Customer Income</p>
           <h3 className="text-2xl font-black text-slate-900 mt-1">{formatCurrency(Math.round(stats.avgIncome))}</h3>
         </div>
       </div>
@@ -122,7 +122,7 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
           <h3 className="font-bold text-slate-900 mb-6 flex items-center gap-2">
             <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
-            สัดส่วนสถานะการยื่นกู้
+            Loan Application Status
           </h3>
           <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -153,7 +153,7 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
           <h3 className="font-bold text-slate-900 mb-6 flex items-center gap-2">
             <div className="w-1.5 h-6 bg-brand-gold rounded-full"></div>
-            กลุ่มอาชีพลูกค้า (Top 5)
+            Customer Occupations (Top 5)
           </h3>
           <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -178,21 +178,21 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-bold text-slate-900 flex items-center gap-2">
               <div className="w-1.5 h-6 bg-emerald-500 rounded-full"></div>
-              นัดหมายที่กำลังจะมาถึง
+              Upcoming Appointments
             </h3>
             <Calendar className="w-5 h-5 text-blue-600" />
           </div>
           
           {upcomingAppointments.length === 0 ? (
             <div className="py-12 text-center">
-              <p className="text-sm text-slate-500">ไม่มีนัดหมายเร็วๆ นี้</p>
+              <p className="text-sm text-slate-500">No upcoming appointments</p>
             </div>
           ) : (
             <div className="space-y-4">
               {upcomingAppointments.map((app) => (
                 <div key={app.id} className="flex items-start gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-all border border-transparent hover:border-slate-100 group">
                   <div className="flex flex-col items-center justify-center min-w-[56px] py-2.5 bg-blue-50 rounded-2xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                    <span className="text-[10px] font-bold uppercase tracking-wider">{format(parseISO(app.date), 'MMM', { locale: th })}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider">{format(parseISO(app.date), 'MMM', { locale: enUS })}</span>
                     <span className="text-xl font-black leading-none">{format(parseISO(app.date), 'd')}</span>
                   </div>
                   <div className="flex-1 min-w-0">
@@ -220,7 +220,7 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
         <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
           <h3 className="font-bold text-slate-900 mb-6 flex items-center gap-2">
             <div className="w-1.5 h-6 bg-slate-900 rounded-full"></div>
-            ความเคลื่อนไหวล่าสุด
+            Recent Activity
           </h3>
           <div className="space-y-4">
             {customers.slice(0, 4).map((c, i) => (
@@ -231,7 +231,7 @@ export function Dashboard({ customers, appointments }: DashboardProps) {
                   </div>
                   <div>
                     <p className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{c.name}</p>
-                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">อัปเดตเมื่อ {new Date(c.updatedAt).toLocaleDateString('th-TH')}</p>
+                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Updated on {new Date(c.updatedAt).toLocaleDateString('en-US')}</p>
                   </div>
                 </div>
                 <span className={cn(

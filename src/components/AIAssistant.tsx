@@ -29,7 +29,7 @@ export function AIAssistant({ customers, properties }: AIAssistantProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: 'สวัสดีครับ! ผมคือ Broker AI ผู้ช่วยส่วนตัวของคุณ วันนี้มีอะไรให้ช่วยไหมครับ? เช่น "สรุปสถานะลูกค้าให้หน่อย" หรือ "แนะนำทรัพย์สินที่น่าสนใจ"' }
+    { role: 'assistant', content: 'Hello! I am Broker AI, your personal assistant. How can I help you today? For example, "Summarize customer status" or "Recommend interesting properties".' }
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -53,21 +53,21 @@ export function AIAssistant({ customers, properties }: AIAssistantProps) {
       const model = "gemini-3-flash-preview";
       
       const systemInstruction = `
-        คุณคือผู้ช่วย AI สำหรับนายหน้าอสังหาริมทรัพย์ (Broker CRM Assistant)
-        ข้อมูลปัจจุบันในระบบ:
-        - จำนวนลูกค้าทั้งหมด: ${customers.length} คน
-        - จำนวนทรัพย์สินทั้งหมด: ${properties.length} รายการ
-        - สถานะลูกค้า: ${customers.map(c => `${c.name} (${c.loanStatus})`).join(', ')}
-        - รายการทรัพย์สิน: ${properties.map(p => `${p.name} ราคา ${p.price} บาท`).join(', ')}
+        You are an AI assistant for real estate brokers (Broker CRM Assistant).
+        Current data in the system:
+        - Total customers: ${customers.length}
+        - Total properties: ${properties.length}
+        - Customer status: ${customers.map(c => `${c.name} (${c.loanStatus})`).join(', ')}
+        - Property list: ${properties.map(p => `${p.name} Price ${p.price} Baht`).join(', ')}
 
-        หน้าที่ของคุณ:
-        1. ตอบคำถามเกี่ยวกับข้อมูลลูกค้าและทรัพย์สินในระบบ
-        2. ช่วยวิเคราะห์สถานะการกู้ของลูกค้า
-        3. แนะนำทรัพย์สินที่เหมาะสมกับลูกค้า
-        4. ช่วยร่างอีเมลหรือข้อความติดต่อลูกค้า/ธนาคาร
-        5. ให้คำปรึกษาด้านการขายและการตลาดอสังหาฯ
+        Your duties:
+        1. Answer questions about customer and property data in the system.
+        2. Help analyze customer loan status.
+        3. Recommend suitable properties for customers.
+        4. Help draft emails or messages to contact customers/banks.
+        5. Provide real estate sales and marketing advice.
 
-        ตอบเป็นภาษาไทยที่สุภาพ เป็นมืออาชีพ และกระชับ
+        Respond in English that is polite, professional, and concise.
       `;
 
       const response = await ai.models.generateContent({
@@ -82,11 +82,11 @@ export function AIAssistant({ customers, properties }: AIAssistantProps) {
         ],
       });
 
-      const aiResponse = response.text || "ขออภัยครับ ผมไม่สามารถประมวลผลคำขอได้ในขณะนี้";
+      const aiResponse = response.text || "Sorry, I cannot process the request at this time.";
       setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
     } catch (error) {
       console.error("AI Error:", error);
-      setMessages(prev => [...prev, { role: 'assistant', content: "ขออภัยครับ เกิดข้อผิดพลาดในการเชื่อมต่อกับ AI" }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, an error occurred connecting to AI." }]);
     } finally {
       setIsLoading(false);
     }
@@ -179,7 +179,7 @@ export function AIAssistant({ customers, properties }: AIAssistantProps) {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="พิมพ์คำถามของคุณที่นี่..."
+                placeholder="Type your question here..."
                 className="w-full pl-4 pr-12 py-3 rounded-2xl border border-slate-100 bg-slate-50/50 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all text-sm font-bold"
               />
               <button 
