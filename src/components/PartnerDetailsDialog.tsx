@@ -20,7 +20,7 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
 
   return (
     <>
-      <Dialog isOpen={isOpen} onClose={onClose} title="Partner Details" maxWidth="max-w-md">
+      <Dialog isOpen={isOpen} onClose={onClose} title="รายละเอียดพาร์ทเนอร์" maxWidth="max-w-md">
         <div className="space-y-6">
           <div className="flex justify-between items-start border-b pb-4">
             <div className="flex items-center">
@@ -29,7 +29,7 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900">{partner.name}</h3>
-                <p className="text-sm text-blue-600 font-medium">{partner.bankName || 'Bank not specified'}</p>
+                <p className="text-sm text-blue-600 font-medium">{partner.bankName || 'ไม่ระบุธนาคาร'}</p>
               </div>
             </div>
             <div className="flex gap-2">
@@ -38,7 +38,7 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
                   onClick={() => onEdit(partner)}
                   className="p-2 text-blue-600 hover:bg-blue-50 rounded-md transition-colors flex items-center text-sm font-medium"
                 >
-                  <Edit2 className="w-4 h-4 mr-1.5" /> Edit
+                  <Edit2 className="w-4 h-4 mr-1.5" /> แก้ไข
                 </button>
               )}
               {onDelete && (
@@ -46,7 +46,7 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
                   onClick={() => setIsDeleteConfirmOpen(true)}
                   className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors flex items-center text-sm font-medium"
                 >
-                  <Trash2 className="w-4 h-4 mr-1.5" /> Delete
+                  <Trash2 className="w-4 h-4 mr-1.5" /> ลบ
                 </button>
               )}
             </div>
@@ -57,7 +57,7 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
               <div className="flex items-center text-gray-700">
                 <Phone className="w-5 h-5 text-gray-400 mr-3" />
                 <div>
-                  <p className="text-xs text-gray-500">Phone Number</p>
+                  <p className="text-xs text-gray-500">เบอร์โทรศัพท์</p>
                   <p className="font-medium">{partner.phone}</p>
                 </div>
               </div>
@@ -83,7 +83,7 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
                       rel="noopener noreferrer"
                       className="text-sm font-medium text-blue-600 hover:underline flex items-center"
                     >
-                      View Profile <ExternalLink className="w-3 h-3 ml-1" />
+                      ดูโปรไฟล์ <ExternalLink className="w-3 h-3 ml-1" />
                     </a>
                   </div>
                 </div>
@@ -96,7 +96,7 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
                   <Percent className="w-5 h-5 text-gray-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Commission</p>
+                  <p className="text-sm text-gray-500">ค่าคอมมิชชั่น</p>
                   <p className="font-semibold text-gray-900">{partner.commissionRate}%</p>
                 </div>
               </div>
@@ -106,7 +106,7 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
                   <Coins className="w-5 h-5 text-gray-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Referral Fee</p>
+                  <p className="text-sm text-gray-500">ค่าแนะนำ</p>
                   <p className="font-semibold text-gray-900">{formatCurrency(partner.referralFee)}</p>
                 </div>
               </div>
@@ -114,10 +114,10 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
 
             <div className="border rounded-xl p-4">
               <h4 className="text-sm font-semibold text-gray-900 mb-2 flex items-center">
-                <FileText className="w-4 h-4 mr-2 text-gray-400" /> Notes
+                <FileText className="w-4 h-4 mr-2 text-gray-400" /> หมายเหตุ
               </h4>
               <p className="text-sm text-gray-600 whitespace-pre-wrap">
-                {partner.notes || 'No notes'}
+                {partner.notes || 'ไม่มีหมายเหตุ'}
               </p>
             </div>
           </div>
@@ -131,9 +131,9 @@ export function PartnerDetailsDialog({ isOpen, onClose, partner, onEdit, onDelet
           onDelete?.(partner.id);
           onClose();
         }}
-        title="Confirm Deletion"
-        message={`Are you sure you want to delete partner "${partner.name}"?`}
-        confirmText="Delete Data"
+        title="ยืนยันการลบ"
+        message={`คุณแน่ใจหรือไม่ว่าต้องการลบพาร์ทเนอร์ "${partner.name}"?`}
+        confirmText="ลบข้อมูล"
         variant="danger"
       />
     </>

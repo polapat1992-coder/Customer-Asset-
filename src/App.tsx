@@ -300,7 +300,7 @@ export default function App() {
   };
 
   const handleExportCSV = () => {
-    const headers = ['ID', 'Name', 'Phone', 'Line ID', 'Occupation', 'Income', 'Credit Score', 'Loan Status', 'Created At'];
+    const headers = ['ID', 'ชื่อ', 'เบอร์โทร', 'Line ID', 'อาชีพ', 'รายได้', 'เครดิตบูโร', 'สถานะการยื่นกู้', 'วันที่สร้าง'];
     const csvRows = [
       headers.join(','),
       ...customers.map(c => [
@@ -457,7 +457,7 @@ export default function App() {
   const renderPartnersView = () => (
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-900">รายการพันธมิตร (Partners)</h2>
+        <h2 className="text-2xl font-bold text-gray-900">รายการพันธมิตร ({partners.length})</h2>
         <button 
           onClick={() => {
             setEditingPartner(null);
@@ -484,7 +484,7 @@ export default function App() {
   const renderOwnersView = () => (
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-900">รายการเจ้าของทรัพย์ (Owners)</h2>
+        <h2 className="text-2xl font-bold text-gray-900">รายการเจ้าของทรัพย์ ({filteredOwners.length})</h2>
         <button 
           onClick={() => {
             setEditingOwner(null);

@@ -29,7 +29,7 @@ export function AIAssistant({ customers, properties }: AIAssistantProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: 'Hello! I am Broker AI, your personal assistant. How can I help you today? For example, "Summarize customer status" or "Recommend interesting properties".' }
+    { role: 'assistant', content: 'สวัสดีครับ! ผมคือ Broker AI ผู้ช่วยส่วนตัวของคุณ มีอะไรให้ผมช่วยในวันนี้ไหมครับ? เช่น "สรุปสถานะลูกค้า" หรือ "แนะนำทรัพย์สินที่น่าสนใจ"' }
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -53,21 +53,21 @@ export function AIAssistant({ customers, properties }: AIAssistantProps) {
       const model = "gemini-3-flash-preview";
       
       const systemInstruction = `
-        You are an AI assistant for real estate brokers (Broker CRM Assistant).
-        Current data in the system:
-        - Total customers: ${customers.length}
-        - Total properties: ${properties.length}
-        - Customer status: ${customers.map(c => `${c.name} (${c.loanStatus})`).join(', ')}
-        - Property list: ${properties.map(p => `${p.name} Price ${p.price} Baht`).join(', ')}
+        คุณคือผู้ช่วย AI สำหรับนายหน้าอสังหาริมทรัพย์ (Broker CRM Assistant)
+        ข้อมูลปัจจุบันในระบบ:
+        - ลูกค้าทั้งหมด: ${customers.length} ราย
+        - ทรัพย์สินทั้งหมด: ${properties.length} ราย
+        - สถานะลูกค้า: ${customers.map(c => `${c.name} (${c.loanStatus})`).join(', ')}
+        - รายการทรัพย์สิน: ${properties.map(p => `${p.name} ราคา ${p.price} บาท`).join(', ')}
 
-        Your duties:
-        1. Answer questions about customer and property data in the system.
-        2. Help analyze customer loan status.
-        3. Recommend suitable properties for customers.
-        4. Help draft emails or messages to contact customers/banks.
-        5. Provide real estate sales and marketing advice.
+        หน้าที่ของคุณ:
+        1. ตอบคำถามเกี่ยวกับข้อมูลลูกค้าและทรัพย์สินในระบบ
+        2. ช่วยวิเคราะห์สถานะการยื่นกู้ของลูกค้า
+        3. แนะนำทรัพย์สินที่เหมาะสมกับลูกค้า
+        4. ช่วยร่างอีเมลหรือข้อความเพื่อติดต่อลูกค้า/ธนาคาร
+        5. ให้คำแนะนำด้านการขายและการตลาดอสังหาริมทรัพย์
 
-        Respond in English that is polite, professional, and concise.
+        ตอบเป็นภาษาไทยที่สุภาพ เป็นมืออาชีพ และกระชับ
       `;
 
       const response = await ai.models.generateContent({
@@ -82,11 +82,11 @@ export function AIAssistant({ customers, properties }: AIAssistantProps) {
         ],
       });
 
-      const aiResponse = response.text || "Sorry, I cannot process the request at this time.";
+      const aiResponse = response.text || "ขออภัยครับ ผมไม่สามารถประมวลผลคำขอได้ในขณะนี้";
       setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
     } catch (error) {
       console.error("AI Error:", error);
-      setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, an error occurred connecting to AI." }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "ขออภัยครับ เกิดข้อผิดพลาดในการเชื่อมต่อกับ AI" }]);
     } finally {
       setIsLoading(false);
     }
@@ -110,7 +110,7 @@ export function AIAssistant({ customers, properties }: AIAssistantProps) {
                 <h3 className="text-sm font-black uppercase tracking-widest">Broker AI</h3>
                 <div className="flex items-center gap-1.5">
                   <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
-                  <span className="text-[10px] font-bold text-slate-400">Online</span>
+                  <span className="text-[10px] font-bold text-slate-400">ออนไลน์</span>
                 </div>
               </div>
             </div>
@@ -179,7 +179,7 @@ export function AIAssistant({ customers, properties }: AIAssistantProps) {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="Type your question here..."
+                placeholder="พิมพ์คำถามของคุณที่นี่..."
                 className="w-full pl-4 pr-12 py-3 rounded-2xl border border-slate-100 bg-slate-50/50 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all text-sm font-bold"
               />
               <button 

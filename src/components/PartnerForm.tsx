@@ -75,7 +75,7 @@ export function PartnerForm({ isOpen, onClose, onSubmit, initialData }: PartnerF
     <Dialog 
       isOpen={isOpen} 
       onClose={onClose} 
-      title={initialData ? "Edit Partner Info" : "Add New Partner"}
+      title={initialData ? "แก้ไขข้อมูลพาร์ทเนอร์" : "เพิ่มพาร์ทเนอร์ใหม่"}
       maxWidth="max-w-md"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -86,16 +86,16 @@ export function PartnerForm({ isOpen, onClose, onSubmit, initialData }: PartnerF
               type="text"
               value={quickPaste}
               onChange={(e) => handleQuickPaste(e.target.value)}
-              placeholder="Paste name and phone here (e.g., John Doe 0812345678)"
+              placeholder="วางชื่อและเบอร์โทรที่นี่ (เช่น สมชาย 0812345678)"
               className="w-full pl-10 pr-4 py-2 bg-blue-50 border border-blue-100 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none placeholder:text-blue-300"
             />
           </div>
-          <p className="text-[10px] text-blue-400 mt-1 ml-1 italic">* Paste copied info to auto-split name and phone</p>
+          <p className="text-[10px] text-blue-400 mt-1 ml-1 italic">* วางข้อมูลที่คัดลอกมาเพื่อแยกชื่อและเบอร์โทรอัตโนมัติ</p>
         </div>
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 flex items-center justify-between">
             <div className="flex items-center">
-              <User className="w-4 h-4 mr-2 text-gray-400" /> Partner / Broker Name
+              <User className="w-4 h-4 mr-2 text-gray-400" /> ชื่อพาร์ทเนอร์ / นายหน้า
             </div>
             {isContactPickerSupported() ? (
               <button
@@ -103,11 +103,11 @@ export function PartnerForm({ isOpen, onClose, onSubmit, initialData }: PartnerF
                 onClick={handleSelectContact}
                 className="text-xs text-blue-600 hover:text-blue-700 flex items-center font-normal"
               >
-                <Contact className="w-3 h-3 mr-1" /> Select from Contacts
+                <Contact className="w-3 h-3 mr-1" /> เลือกจากรายชื่อติดต่อ
               </button>
             ) : isBrowserSupportedButInIframe() ? (
               <span className="text-[10px] text-gray-400 font-normal italic">
-                Open in new tab to select from contacts
+                เปิดในแท็บใหม่เพื่อเลือกจากรายชื่อติดต่อ
               </span>
             ) : null}
           </label>
@@ -117,13 +117,13 @@ export function PartnerForm({ isOpen, onClose, onSubmit, initialData }: PartnerF
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-            placeholder="e.g., Mr. Somchai Broker"
+            placeholder="เช่น นายสมชาย นายหน้า"
           />
         </div>
 
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 flex items-center">
-            <Phone className="w-4 h-4 mr-2 text-gray-400" /> Phone Number
+            <Phone className="w-4 h-4 mr-2 text-gray-400" /> เบอร์โทรศัพท์
           </label>
           <input
             required
@@ -131,7 +131,7 @@ export function PartnerForm({ isOpen, onClose, onSubmit, initialData }: PartnerF
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-            placeholder="e.g., 085-XXX-XXXX"
+            placeholder="เช่น 085-XXX-XXXX"
           />
         </div>
 
@@ -164,21 +164,21 @@ export function PartnerForm({ isOpen, onClose, onSubmit, initialData }: PartnerF
 
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 flex items-center">
-            <Landmark className="w-4 h-4 mr-2 text-gray-400" /> Recommended Bank
+            <Landmark className="w-4 h-4 mr-2 text-gray-400" /> ธนาคารที่แนะนำ
           </label>
           <input
             type="text"
             value={formData.bankName || ''}
             onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
             className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-            placeholder="e.g., SCB, KBank"
+            placeholder="เช่น SCB, KBank"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700 flex items-center">
-              <Percent className="w-4 h-4 mr-2 text-gray-400" /> Commission (%)
+              <Percent className="w-4 h-4 mr-2 text-gray-400" /> ค่าคอมมิชชั่น (%)
             </label>
             <input
               type="number"
@@ -186,32 +186,32 @@ export function PartnerForm({ isOpen, onClose, onSubmit, initialData }: PartnerF
               value={formData.commissionRate || ''}
               onChange={(e) => setFormData({ ...formData, commissionRate: Number(e.target.value) })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              placeholder="e.g., 1.5"
+              placeholder="เช่น 1.5"
             />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700 flex items-center">
-              <Wallet className="w-4 h-4 mr-2 text-gray-400" /> Referral Fee (THB)
+              <Wallet className="w-4 h-4 mr-2 text-gray-400" /> ค่าแนะนำ (บาท)
             </label>
             <input
               type="number"
               value={formData.referralFee || ''}
               onChange={(e) => setFormData({ ...formData, referralFee: Number(e.target.value) })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              placeholder="e.g., 10000"
+              placeholder="เช่น 10000"
             />
           </div>
         </div>
 
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 flex items-center">
-            <FileText className="w-4 h-4 mr-2 text-gray-400" /> Notes
+            <FileText className="w-4 h-4 mr-2 text-gray-400" /> บันทึกเพิ่มเติม
           </label>
           <textarea
             value={formData.notes || ''}
             onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
             className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none min-h-[80px]"
-            placeholder="Additional information..."
+            placeholder="ข้อมูลเพิ่มเติม..."
           />
         </div>
 
@@ -221,13 +221,13 @@ export function PartnerForm({ isOpen, onClose, onSubmit, initialData }: PartnerF
             onClick={onClose}
             className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
           >
-            Cancel
+            ยกเลิก
           </button>
           <button
             type="submit"
             className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm"
           >
-            {initialData ? "Save Changes" : "Add Partner"}
+            {initialData ? "บันทึกการแก้ไข" : "เพิ่มพาร์ทเนอร์"}
           </button>
         </div>
       </form>

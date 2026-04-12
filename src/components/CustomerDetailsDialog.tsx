@@ -62,7 +62,7 @@ export function CustomerDetailsDialog({
 
   return (
     <>
-      <Dialog isOpen={isOpen} onClose={onClose} title="Customer Details" maxWidth="max-w-2xl">
+      <Dialog isOpen={isOpen} onClose={onClose} title="รายละเอียดลูกค้า" maxWidth="max-w-2xl">
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row items-center gap-6 border-b pb-6">
             <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center overflow-hidden border-4 border-white shadow-sm">
@@ -93,13 +93,13 @@ export function CustomerDetailsDialog({
                 onClick={() => onEdit(customer)}
                 className="p-2 text-blue-600 hover:bg-blue-50 rounded-md transition-colors flex items-center text-sm font-medium"
               >
-                <Edit2 className="w-4 h-4 mr-1.5" /> Edit
+                <Edit2 className="w-4 h-4 mr-1.5" /> แก้ไข
               </button>
               <button 
                 onClick={() => setIsDeleteConfirmOpen(true)}
                 className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors flex items-center text-sm font-medium"
               >
-                <Trash2 className="w-4 h-4 mr-1.5" /> Delete
+                <Trash2 className="w-4 h-4 mr-1.5" /> ลบ
               </button>
             </div>
           </div>
@@ -108,14 +108,14 @@ export function CustomerDetailsDialog({
             <div className="flex items-center">
               <User className="w-5 h-5 text-gray-400 mr-3" />
               <div>
-                <p className="text-xs text-gray-500">Full Name</p>
+                <p className="text-xs text-gray-500">ชื่อ-นามสกุล</p>
                 <p className="font-medium">{customer.name}</p>
               </div>
             </div>
             <div className="flex items-center">
               <Phone className="w-5 h-5 text-gray-400 mr-3" />
               <div>
-                <p className="text-xs text-gray-500">Phone Number</p>
+                <p className="text-xs text-gray-500">เบอร์โทรศัพท์</p>
                 <p className="font-medium">{customer.phone}</p>
               </div>
             </div>
@@ -139,7 +139,7 @@ export function CustomerDetailsDialog({
                     rel="noopener noreferrer"
                     className="text-sm font-medium text-blue-600 hover:underline"
                   >
-                    View Profile
+                    ดูโปรไฟล์
                   </a>
                 </div>
               </div>
@@ -147,35 +147,35 @@ export function CustomerDetailsDialog({
             <div className="flex items-center">
               <Briefcase className="w-5 h-5 text-gray-400 mr-3" />
               <div>
-                <p className="text-xs text-gray-500">Occupation</p>
+                <p className="text-xs text-gray-500">อาชีพ</p>
                 <p className="font-medium">{customer.occupation}</p>
               </div>
             </div>
             <div className="flex items-center">
               <Wallet className="w-5 h-5 text-gray-400 mr-3" />
               <div>
-                <p className="text-xs text-gray-500">Main Income</p>
+                <p className="text-xs text-gray-500">รายได้หลัก</p>
                 <p className="font-medium">{formatCurrency(customer.income)}</p>
               </div>
             </div>
             <div className="flex items-center">
               <Wallet className="w-5 h-5 text-green-500 mr-3" />
               <div>
-                <p className="text-xs text-gray-500">Additional Income</p>
+                <p className="text-xs text-gray-500">รายได้เสริม</p>
                 <p className="font-medium text-green-600">{formatCurrency(customer.additionalIncome || 0)}</p>
               </div>
             </div>
             <div className="flex items-center">
               <Wallet className="w-5 h-5 text-red-500 mr-3" />
               <div>
-                <p className="text-xs text-gray-500">Debt Burden</p>
+                <p className="text-xs text-gray-500">ภาระหนี้</p>
                 <p className="font-medium text-red-600">{formatCurrency(customer.debtBurden || 0)}</p>
               </div>
             </div>
             <div className="flex items-center bg-blue-50 p-2 rounded-md border border-blue-100">
               <Wallet className="w-5 h-5 text-blue-600 mr-3" />
               <div>
-                <p className="text-xs text-blue-500 font-medium">Net Income (Incl. Co-Borrowers)</p>
+                <p className="text-xs text-blue-500 font-medium">รายได้สุทธิ (รวมผู้กู้ร่วม)</p>
                 <p className="font-bold text-blue-700">
                   {formatCurrency(totalCombinedIncome)}
                 </p>
@@ -184,16 +184,16 @@ export function CustomerDetailsDialog({
             <div className="flex items-center">
               <CreditCard className="w-5 h-5 text-gray-400 mr-3" />
               <div>
-                <p className="text-xs text-gray-500">Credit Bureau (Grade)</p>
+                <p className="text-xs text-gray-500">เครดิตบูโร (เกรด)</p>
                 <p className="font-medium">{customer.creditScore}</p>
               </div>
             </div>
             <div className="flex items-start sm:col-span-2">
               <ShieldCheck className="w-5 h-5 text-gray-400 mr-3 mt-1" />
               <div>
-                <p className="text-xs text-gray-500">Credit Bureau Status ({customer.ncbCode || '-'})</p>
+                <p className="text-xs text-gray-500">สถานะเครดิตบูโร ({customer.ncbCode || '-'})</p>
                 <p className="font-medium text-sm text-gray-700">
-                  {customer.ncbCode ? getNcbDescription(customer.ncbCode) : 'Status code not specified'}
+                  {customer.ncbCode ? getNcbDescription(customer.ncbCode) : 'ไม่ได้ระบุรหัสสถานะ'}
                 </p>
               </div>
             </div>
@@ -202,7 +202,7 @@ export function CustomerDetailsDialog({
           {/* Properties and Partners */}
           <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="border rounded-lg p-4">
-              <h3 className="text-sm font-semibold text-gray-900 mb-2">Interested Properties ({linkedProperties.length})</h3>
+              <h3 className="text-sm font-semibold text-gray-900 mb-2">ทรัพย์สินที่สนใจ ({linkedProperties.length})</h3>
               <div className="space-y-2 max-h-32 overflow-y-auto pr-1 custom-scrollbar">
                 {linkedProperties.length > 0 ? (
                   linkedProperties.map(p => (
@@ -217,38 +217,38 @@ export function CustomerDetailsDialog({
                     </div>
                   ))
                 ) : (
-                  <p className="text-sm text-gray-500 italic">No properties selected</p>
+                  <p className="text-sm text-gray-500 italic">ไม่ได้เลือกทรัพย์สิน</p>
                 )}
               </div>
             </div>
             <div className="border rounded-lg p-4">
-              <h3 className="text-sm font-semibold text-gray-900 mb-2">Partner / Bank</h3>
+              <h3 className="text-sm font-semibold text-gray-900 mb-2">พาร์ทเนอร์ / ธนาคาร</h3>
               {partner ? (
                 <div>
                   <p className="font-medium text-blue-600 cursor-pointer hover:underline" onClick={onViewPartner}>
                     {partner.name}
                   </p>
-                  <p className="text-sm text-gray-500 mt-1">Bank: {partner.bankName || '-'}</p>
-                  <p className="text-sm text-gray-500">Phone: {partner.phone}</p>
+                  <p className="text-sm text-gray-500 mt-1">ธนาคาร: {partner.bankName || '-'}</p>
+                  <p className="text-sm text-gray-500">โทร: {partner.phone}</p>
                 </div>
               ) : (
-                <p className="text-sm text-gray-500">No bank selected</p>
+                <p className="text-sm text-gray-500">ไม่ได้เลือกธนาคาร</p>
               )}
             </div>
             <div className="border rounded-lg p-4">
               <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center">
-                <Landmark className="w-4 h-4 mr-1.5 text-purple-500" /> Bank Officer
+                <Landmark className="w-4 h-4 mr-1.5 text-purple-500" /> เจ้าหน้าที่ธนาคาร
               </h3>
               {bankOfficer ? (
                 <div>
                   <p className="font-medium text-purple-600 cursor-pointer hover:underline" onClick={() => onViewBankOfficer(bankOfficer)}>
                     {bankOfficer.name}
                   </p>
-                  <p className="text-sm text-gray-500 mt-1">Bank: {bankOfficer.bankName}</p>
-                  <p className="text-sm text-gray-500">Phone: {bankOfficer.phone}</p>
+                  <p className="text-sm text-gray-500 mt-1">ธนาคาร: {bankOfficer.bankName}</p>
+                  <p className="text-sm text-gray-500">โทร: {bankOfficer.phone}</p>
                 </div>
               ) : (
-                <p className="text-sm text-gray-500 italic">No officer selected</p>
+                <p className="text-sm text-gray-500 italic">ไม่ได้เลือกเจ้าหน้าที่</p>
               )}
             </div>
           </section>
@@ -257,7 +257,7 @@ export function CustomerDetailsDialog({
           {customer.coBorrowers && customer.coBorrowers.length > 0 && (
             <section className="space-y-3">
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider flex items-center">
-                <Users className="w-4 h-4 mr-2" /> Co-Borrower Info ({customer.coBorrowers.length})
+                <Users className="w-4 h-4 mr-2" /> ข้อมูลผู้กู้ร่วม ({customer.coBorrowers.length})
               </h3>
               <div className="grid grid-cols-1 gap-3">
                 {customer.coBorrowers.map((cb) => (
@@ -265,7 +265,7 @@ export function CustomerDetailsDialog({
                     <div className="flex justify-between items-start mb-2">
                       <h4 className="font-bold text-gray-900">{cb.name}</h4>
                       <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full uppercase">
-                        {cb.relation || 'Relation not specified'}
+                        {cb.relation || 'ไม่ระบุความสัมพันธ์'}
                       </span>
                     </div>
                     <div className="grid grid-cols-2 gap-y-2 gap-x-4 text-sm">
@@ -280,7 +280,7 @@ export function CustomerDetailsDialog({
                       <div className="flex items-center text-gray-600 col-span-2">
                         <Wallet className="w-3.5 h-3.5 mr-2 text-gray-400" />
                         <span className="font-medium text-gray-900">{formatCurrency(cb.income)}</span>
-                        <span className="text-xs text-gray-400 ml-1">/ month</span>
+                        <span className="text-xs text-gray-400 ml-1">/ เดือน</span>
                       </div>
                     </div>
                   </div>
@@ -291,24 +291,24 @@ export function CustomerDetailsDialog({
 
           {/* Documents */}
           <section>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Document Checklist (Click to mark)</h3>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">รายการเอกสาร (คลิกเพื่อทำเครื่องหมาย)</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-gray-50 rounded-lg p-4">
               <div>
-                <h4 className="font-medium text-gray-900 mb-3">Personal Documents</h4>
+                <h4 className="font-medium text-gray-900 mb-3">เอกสารส่วนตัว</h4>
                 {renderChecklist('personal', customer.documentChecklist.personal, {
-                  idCard: 'ID Card',
-                  houseRegistration: 'House Registration',
-                  nameChangeCertificate: 'Name Change Certificate',
-                  marriageCertificate: 'Marriage/Divorce Certificate',
+                  idCard: 'บัตรประชาชน',
+                  houseRegistration: 'ทะเบียนบ้าน',
+                  nameChangeCertificate: 'ใบเปลี่ยนชื่อ-นามสกุล',
+                  marriageCertificate: 'ทะเบียนสมรส/ใบหย่า',
                 })}
               </div>
               <div>
-                <h4 className="font-medium text-gray-900 mb-3">Income Documents</h4>
+                <h4 className="font-medium text-gray-900 mb-3">เอกสารรายได้</h4>
                 {renderChecklist('income', customer.documentChecklist.income, {
-                  salarySlip: 'Salary Slip (3-6 months)',
-                  bankStatement: 'Bank Statement (6 months)',
-                  employmentCertificate: 'Employment Certificate',
-                  taxReturn: 'Tax Return (P.N.D. 90/91/50)',
+                  salarySlip: 'สลิปเงินเดือน (3-6 เดือน)',
+                  bankStatement: 'รายการเดินบัญชี (6 เดือน)',
+                  employmentCertificate: 'หนังสือรับรองการทำงาน',
+                  taxReturn: 'ภ.พ.ด. 90/91/50',
                 })}
               </div>
             </div>
@@ -317,7 +317,7 @@ export function CustomerDetailsDialog({
           {/* Notes */}
           <section className="space-y-4">
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider flex items-center">
-              <MessageSquare className="w-4 h-4 mr-2" /> Additional Notes
+              <MessageSquare className="w-4 h-4 mr-2" /> บันทึกเพิ่มเติม
             </h3>
             
             <div className="space-y-3">
@@ -327,20 +327,20 @@ export function CustomerDetailsDialog({
                     <div key={note.id} className="bg-blue-50/50 rounded-lg p-3 border border-blue-100">
                       <p className="text-sm text-gray-800 whitespace-pre-wrap">{note.content}</p>
                       <p className="text-[10px] text-gray-400 mt-2">
-                        {new Date(note.createdAt).toLocaleString('en-US')}
+                        {new Date(note.createdAt).toLocaleString('th-TH')}
                       </p>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-400 italic text-center py-4">No notes yet</p>
+                <p className="text-sm text-gray-400 italic text-center py-4">ยังไม่มีบันทึก</p>
               )}
 
               <div className="flex gap-2">
                 <textarea
                   value={newNote}
                   onChange={(e) => setNewNote(e.target.value)}
-                  placeholder="Add a new note..."
+                  placeholder="เพิ่มบันทึกใหม่..."
                   className="flex-1 px-3 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none h-20"
                 />
                 <button
@@ -363,9 +363,9 @@ export function CustomerDetailsDialog({
           onDelete(customer.id);
           onClose();
         }}
-        title="Confirm Deletion"
-        message={`Are you sure you want to delete "${customer.name}"? This action cannot be undone.`}
-        confirmText="Delete Data"
+        title="ยืนยันการลบ"
+        message={`คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลของ "${customer.name}"? การดำเนินการนี้ไม่สามารถย้อนกลับได้`}
+        confirmText="ลบข้อมูล"
         variant="danger"
       />
     </>

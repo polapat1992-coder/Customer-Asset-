@@ -28,11 +28,11 @@ interface AppointmentFormProps {
 }
 
 const appointmentTypes = [
-  { id: 'MEETING', label: 'Meeting', icon: <User className="w-4 h-4" /> },
-  { id: 'CALL', label: 'Call', icon: <PhoneCall className="w-4 h-4" /> },
-  { id: 'SITE_VISIT', label: 'Site Visit', icon: <Eye className="w-4 h-4" /> },
-  { id: 'DOCUMENT_SIGNING', label: 'Signing', icon: <FileCheck className="w-4 h-4" /> },
-  { id: 'OTHER', label: 'Other', icon: <MoreHorizontal className="w-4 h-4" /> },
+  { id: 'MEETING', label: 'ประชุม', icon: <User className="w-4 h-4" /> },
+  { id: 'CALL', label: 'โทรศัพท์', icon: <PhoneCall className="w-4 h-4" /> },
+  { id: 'SITE_VISIT', label: 'พาชมทรัพย์', icon: <Eye className="w-4 h-4" /> },
+  { id: 'DOCUMENT_SIGNING', label: 'เซ็นเอกสาร', icon: <FileCheck className="w-4 h-4" /> },
+  { id: 'OTHER', label: 'อื่นๆ', icon: <MoreHorizontal className="w-4 h-4" /> },
 ];
 
 export function AppointmentForm({ 
@@ -87,26 +87,26 @@ export function AppointmentForm({
     <Dialog 
       isOpen={isOpen} 
       onClose={onClose} 
-      title={appointment ? "Edit Appointment" : "Add New Appointment"}
+      title={appointment ? "แก้ไขนัดหมาย" : "เพิ่มนัดหมายใหม่"}
       maxWidth="max-w-lg"
     >
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-1.5">Appointment Title</label>
+            <label className="block text-sm font-bold text-gray-700 mb-1.5">หัวข้อนัดหมาย</label>
             <input
               type="text"
               required
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              placeholder="e.g., House viewing, Loan discussion"
+              placeholder="เช่น พาชมบ้าน, ปรึกษาสินเชื่อ"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1.5">Date</label>
+              <label className="block text-sm font-bold text-gray-700 mb-1.5">วันที่</label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
@@ -120,7 +120,7 @@ export function AppointmentForm({
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1.5">Start</label>
+                <label className="block text-sm font-bold text-gray-700 mb-1.5">เริ่ม</label>
                 <div className="relative">
                   <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
@@ -133,7 +133,7 @@ export function AppointmentForm({
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1.5">End</label>
+                <label className="block text-sm font-bold text-gray-700 mb-1.5">สิ้นสุด</label>
                 <div className="relative">
                   <Clock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
@@ -149,7 +149,7 @@ export function AppointmentForm({
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">Appointment Type</label>
+            <label className="block text-sm font-bold text-gray-700 mb-2">ประเภทนัดหมาย</label>
             <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
               {appointmentTypes.map((type) => (
                 <button
@@ -172,7 +172,7 @@ export function AppointmentForm({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1.5">Related To</label>
+              <label className="block text-sm font-bold text-gray-700 mb-1.5">เกี่ยวข้องกับ</label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <select
@@ -186,14 +186,14 @@ export function AppointmentForm({
                   }}
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none bg-white"
                 >
-                  <option value="">Not Specified</option>
-                  <optgroup label="Customers">
+                  <option value="">ไม่ระบุ</option>
+                  <optgroup label="ลูกค้า">
                     {customers.map(c => <option key={c.id} value={`c:${c.id}`}>{c.name}</option>)}
                   </optgroup>
-                  <optgroup label="Partners">
+                  <optgroup label="พาร์ทเนอร์">
                     {partners.map(p => <option key={p.id} value={`p:${p.id}`}>{p.name}</option>)}
                   </optgroup>
-                  <optgroup label="Bank Officers">
+                  <optgroup label="เจ้าหน้าที่ธนาคาร">
                     {bankOfficers.map(b => <option key={b.id} value={`b:${b.id}`}>{b.name}</option>)}
                   </optgroup>
                 </select>
@@ -201,7 +201,7 @@ export function AppointmentForm({
               </div>
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1.5">Location</label>
+              <label className="block text-sm font-bold text-gray-700 mb-1.5">สถานที่</label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
@@ -209,21 +209,21 @@ export function AppointmentForm({
                   value={formData.location}
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  placeholder="e.g., Office, Project Site"
+                  placeholder="เช่น ออฟฟิศ, หน้างาน"
                 />
               </div>
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-1.5">Additional Details</label>
+            <label className="block text-sm font-bold text-gray-700 mb-1.5">รายละเอียดเพิ่มเติม</label>
             <div className="relative">
               <FileText className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
               <textarea
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all min-h-[100px]"
-                placeholder="Enter appointment details..."
+                placeholder="กรอกรายละเอียดนัดหมาย..."
               />
             </div>
           </div>
@@ -234,14 +234,14 @@ export function AppointmentForm({
             <button
               type="button"
               onClick={() => {
-                if (confirm('Are you sure you want to delete this appointment?')) {
+                if (confirm('คุณแน่ใจหรือไม่ว่าต้องการลบนัดหมายนี้?')) {
                   onDelete(appointment.id);
                   onClose();
                 }
               }}
               className="text-red-600 hover:text-red-700 font-bold flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-red-50 transition-all"
             >
-              <Trash2 className="w-4 h-4" /> Delete Appointment
+              <Trash2 className="w-4 h-4" /> ลบนัดหมาย
             </button>
           ) : (
             <div />
@@ -252,13 +252,13 @@ export function AppointmentForm({
               onClick={onClose}
               className="px-6 py-2.5 rounded-xl font-bold text-gray-600 hover:bg-gray-50 transition-all"
             >
-              Cancel
+              ยกเลิก
             </button>
             <button
               type="submit"
               className="px-8 py-2.5 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 transition-all shadow-lg shadow-blue-200"
             >
-              Save
+              บันทึก
             </button>
           </div>
         </div>

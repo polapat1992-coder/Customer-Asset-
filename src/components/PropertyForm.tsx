@@ -304,7 +304,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
         <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700 flex items-center">
-              <Building2 className="w-4 h-4 mr-2 text-gray-400" /> ชื่อทรัพย์สิน / Property Name
+              <Building2 className="w-4 h-4 mr-2 text-gray-400" /> ชื่อทรัพย์สิน
             </label>
             <input
               required
@@ -312,13 +312,13 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              placeholder="เช่น Supalai Veranda / e.g. Supalai Veranda"
+              placeholder="เช่น ศุภาลัย เวอเรนด้า"
             />
           </div>
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700 flex items-center">
-              <MapPin className="w-4 h-4 mr-2 text-gray-400" /> ทำเลที่ตั้ง / Location
+              <MapPin className="w-4 h-4 mr-2 text-gray-400" /> ทำเลที่ตั้ง
             </label>
             <input
               required
@@ -326,7 +326,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
               value={formData.location}
               onChange={(e) => setFormData({ ...formData, location: e.target.value })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              placeholder="เช่น พระราม 9, กรุงเทพฯ / e.g. Rama 9, Bangkok"
+              placeholder="เช่น พระราม 9, กรุงเทพฯ"
             />
           </div>
 
@@ -359,7 +359,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700 flex items-center">
-                <Home className="w-4 h-4 mr-2 text-gray-400" /> ประเภท / Type
+                <Home className="w-4 h-4 mr-2 text-gray-400" /> ประเภท
               </label>
               <select
                 value={formData.specifications?.type}
@@ -369,18 +369,18 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
                 })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
               >
-                <option value="CONDO">คอนโด / Condo</option>
-                <option value="HOUSE">บ้านเดี่ยว / House</option>
-                <option value="TOWNHOUSE">ทาวน์โฮม / Townhome</option>
-                <option value="SEMI_DETACHED">บ้านแฝด / Semi-Detached</option>
-                <option value="RENOVATED">บ้านรีโนเวท / Renovated</option>
-                <option value="USED">บ้านมือสอง / Used House</option>
-                <option value="LAND">ที่ดิน / Land</option>
+                <option value="CONDO">คอนโด</option>
+                <option value="HOUSE">บ้านเดี่ยว</option>
+                <option value="TOWNHOUSE">ทาวน์โฮม</option>
+                <option value="SEMI_DETACHED">บ้านแฝด</option>
+                <option value="RENOVATED">บ้านรีโนเวท</option>
+                <option value="USED">บ้านมือสอง</option>
+                <option value="LAND">ที่ดิน</option>
               </select>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700 flex items-center">
-                ฿ ราคาขาย / Price
+                ฿ ราคาขาย
               </label>
               <input
                 required
@@ -388,7 +388,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
                 value={formData.price || ''}
                 onChange={(e) => setFormData({ ...formData, price: Number(e.target.value) })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                placeholder="เช่น 3500000 / e.g. 3500000"
+                placeholder="เช่น 3500000"
               />
             </div>
           </div>
@@ -396,7 +396,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700 flex items-center">
-                <Bed className="w-4 h-4 mr-2 text-gray-400" /> ห้องนอน / Bedrooms
+                <Bed className="w-4 h-4 mr-2 text-gray-400" /> ห้องนอน
               </label>
               <input
                 type="number"
@@ -410,7 +410,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700 flex items-center">
-                <Bath className="w-4 h-4 mr-2 text-gray-400" /> ห้องน้ำ / Bathrooms
+                <Bath className="w-4 h-4 mr-2 text-gray-400" /> ห้องน้ำ
               </label>
               <input
                 type="number"
@@ -427,7 +427,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700 flex items-center">
-                <Square className="w-4 h-4 mr-2 text-gray-400" /> พื้นที่ / Area
+                <Square className="w-4 h-4 mr-2 text-gray-400" /> พื้นที่
               </label>
               <input
                 type="number"
@@ -441,7 +441,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700 flex items-center">
-                <Layers className="w-4 h-4 mr-2 text-gray-400" /> จำนวนชั้น / Floors
+                <Layers className="w-4 h-4 mr-2 text-gray-400" /> จำนวนชั้น
               </label>
               <input
                 type="number"
@@ -457,7 +457,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-700 flex items-center">
-              <ImageIcon className="w-4 h-4 mr-2 text-gray-400" /> รูปภาพทรัพย์สิน / Property Images
+              <ImageIcon className="w-4 h-4 mr-2 text-gray-400" /> รูปภาพทรัพย์สิน
             </label>
             <div className="grid grid-cols-3 gap-2">
               {formData.images?.map((img, index) => (
@@ -499,7 +499,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
 
         <div className="border-t pt-4 mt-2">
             <div className="flex items-center justify-between mb-4">
-              <h4 className="text-sm font-semibold text-gray-900">ข้อมูลเจ้าของทรัพย์ / Owner Details</h4>
+              <h4 className="text-sm font-semibold text-gray-900">ข้อมูลเจ้าของทรัพย์</h4>
               <button
                 type="button"
                 onClick={() => setFormData({ ...formData, showOwnerInfo: !formData.showOwnerInfo })}
@@ -564,7 +564,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
 
                 <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 flex items-center">
-                  <UserCheck className="w-4 h-4 mr-2 text-blue-500" /> เลือกเจ้าของจากรายการ / Select Owner
+                  <UserCheck className="w-4 h-4 mr-2 text-blue-500" /> เลือกเจ้าของจากรายการ
                 </label>
                 <select
                   value={formData.ownerId || ''}
@@ -581,7 +581,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
               <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 flex items-center">
-                  <User className="w-4 h-4 mr-2 text-gray-400" /> ชื่อเจ้าของ / Owner Name
+                  <User className="w-4 h-4 mr-2 text-gray-400" /> ชื่อเจ้าของ
                 </label>
                 <input
                   type="text"
@@ -593,7 +593,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 flex items-center">
-                  <Phone className="w-4 h-4 mr-2 text-gray-400" /> เบอร์โทรเจ้าของ / Owner Phone
+                  <Phone className="w-4 h-4 mr-2 text-gray-400" /> เบอร์โทรเจ้าของ
                 </label>
                 <input
                   type="text"
@@ -605,7 +605,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 flex items-center">
-                  <Mail className="w-4 h-4 mr-2 text-blue-500" /> อีเมลเจ้าของ / Owner Email
+                  <Mail className="w-4 h-4 mr-2 text-blue-500" /> อีเมลเจ้าของ
                 </label>
                 <input
                   type="email"
@@ -641,7 +641,7 @@ export function PropertyForm({ isOpen, onClose, onSubmit, initialData, owners }:
               </div>
               <div className="space-y-2 col-span-2">
                 <label className="text-sm font-medium text-gray-700 flex items-center">
-                  <MapPin className="w-4 h-4 mr-2 text-red-500" /> ที่อยู่เจ้าของ / Owner Address
+                  <MapPin className="w-4 h-4 mr-2 text-red-500" /> ที่อยู่เจ้าของ
                 </label>
                 <textarea
                   value={formData.ownerAddress || ''}

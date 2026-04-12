@@ -51,7 +51,7 @@ export function BankOfficerCard({ officer, onClick }: BankOfficerCardProps) {
           "px-2.5 py-1 text-xs font-semibold rounded-full",
           styles.badge
         )}>
-          Bank Officer
+          เจ้าหน้าที่ธนาคาร
         </span>
       </div>
 

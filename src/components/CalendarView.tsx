@@ -13,7 +13,7 @@ import {
   eachDayOfInterval,
   isToday
 } from 'date-fns';
-import { enUS } from 'date-fns/locale';
+import { th } from 'date-fns/locale';
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -103,7 +103,7 @@ export function CalendarView({
         <div className="p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/30">
           <div className="flex items-center gap-6">
             <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-              {format(currentMonth, 'MMMM yyyy', { locale: enUS })}
+              {format(currentMonth, 'MMMM yyyy', { locale: th })}
             </h2>
             <div className="flex items-center bg-white rounded-2xl p-1.5 shadow-sm border border-slate-100">
               <button onClick={prevMonth} className="p-2 hover:bg-slate-50 rounded-xl transition-all">
@@ -113,7 +113,7 @@ export function CalendarView({
                 onClick={() => setCurrentMonth(new Date())} 
                 className="px-4 py-1.5 text-xs font-black text-slate-500 hover:text-blue-600 uppercase tracking-widest"
               >
-                Today
+                วันนี้
               </button>
               <button onClick={nextMonth} className="p-2 hover:bg-slate-50 rounded-xl transition-all">
                 <ChevronRight className="w-5 h-5 text-slate-600" />
@@ -124,12 +124,12 @@ export function CalendarView({
             onClick={onAddAppointment}
             className="bg-blue-600 text-white px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest flex items-center gap-2.5 hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 active:scale-95"
           >
-            <Plus className="w-4 h-4" /> New Appointment
+            <Plus className="w-4 h-4" /> เพิ่มนัดหมายใหม่
           </button>
         </div>
 
         <div className="grid grid-cols-7 border-b border-slate-50 bg-slate-50/30">
-          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+          {['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'].map(day => (
             <div key={day} className="py-4 text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
               {day}
             </div>
@@ -185,7 +185,7 @@ export function CalendarView({
                   ))}
                   {dayApps.length > 3 && (
                     <div className="text-[9px] text-slate-400 pl-1 font-bold uppercase tracking-widest">
-                      + {dayApps.length - 3} more
+                      + อีก {dayApps.length - 3} รายการ
                     </div>
                   )}
                 </div>
@@ -200,17 +200,17 @@ export function CalendarView({
         <div className="glass-card rounded-3xl p-6 flex flex-col h-full">
           <div className="mb-8">
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">
-              {format(selectedDate, 'EEEE', { locale: enUS })}
+              {format(selectedDate, 'EEEE', { locale: th })}
             </p>
             <h3 className="text-3xl font-black text-slate-900 tracking-tight">
-              {format(selectedDate, 'd MMMM yyyy', { locale: enUS })}
+              {format(selectedDate, 'd MMMM yyyy', { locale: th })}
             </h3>
           </div>
 
           <div className="flex-1 space-y-6 overflow-y-auto no-scrollbar">
             <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
               <div className="w-1.5 h-4 bg-blue-600 rounded-full"></div>
-              Today's Appointments
+              นัดหมายวันนี้
             </h4>
             
             {selectedDateAppointments.length === 0 ? (
@@ -218,7 +218,7 @@ export function CalendarView({
                 <div className="w-16 h-16 bg-slate-50 rounded-3xl flex items-center justify-center mx-auto mb-4 border border-slate-100">
                   <Clock className="w-8 h-8 text-slate-200" />
                 </div>
-                <p className="text-sm font-bold text-slate-400">No appointments today</p>
+                <p className="text-sm font-bold text-slate-400">ไม่มีนัดหมายในวันนี้</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -274,16 +274,16 @@ export function CalendarView({
 
         <div className="bg-slate-900 rounded-3xl p-6 text-white shadow-2xl shadow-slate-900/20 relative overflow-hidden group">
           <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-600/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
-          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Monthly Summary</h4>
+          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">สรุปรายเดือน</h4>
           <div className="grid grid-cols-2 gap-8 relative z-10">
             <div>
-              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1">Total Appointments</p>
+              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1">นัดหมายทั้งหมด</p>
               <p className="text-3xl font-black tracking-tight">
                 {appointments.filter(app => isSameMonth(new Date(app.date), currentMonth)).length}
               </p>
             </div>
             <div>
-              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1">This Week</p>
+              <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-1">สัปดาห์นี้</p>
               <p className="text-3xl font-black tracking-tight text-blue-400">
                 {appointments.filter(app => {
                   const date = new Date(app.date);

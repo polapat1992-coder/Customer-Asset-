@@ -10,14 +10,14 @@ interface NotificationBellProps {
 
 export function NotificationBell({ isOpen, onClose, notifications }: NotificationBellProps) {
   return (
-    <Dialog isOpen={isOpen} onClose={onClose} title="Notifications" maxWidth="max-w-sm">
+    <Dialog isOpen={isOpen} onClose={onClose} title="การแจ้งเตือน" maxWidth="max-w-sm">
       <div className="space-y-4">
         {notifications.length === 0 ? (
           <div className="text-center py-12 text-slate-500 flex flex-col items-center">
             <div className="w-16 h-16 bg-slate-50 rounded-3xl flex items-center justify-center mb-4 border border-slate-100">
               <Bell className="w-8 h-8 text-slate-200" />
             </div>
-            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">No new notifications</p>
+            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">ไม่มีการแจ้งเตือนใหม่</p>
           </div>
         ) : (
           notifications.map(n => (
@@ -34,7 +34,7 @@ export function NotificationBell({ isOpen, onClose, notifications }: Notificatio
                 {n.message}
               </p>
               <p className="text-[10px] font-black text-slate-400 mt-2 uppercase tracking-widest">
-                {new Date(n.createdAt).toLocaleString('en-US')}
+                {new Date(n.createdAt).toLocaleString('th-TH')}
               </p>
             </div>
           ))

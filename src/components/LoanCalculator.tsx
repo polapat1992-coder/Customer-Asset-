@@ -26,8 +26,8 @@ export function LoanCalculator() {
               <CalcIcon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Loan Calculator</h2>
-              <p className="text-sm text-gray-500">Calculate estimated monthly payments</p>
+              <h2 className="text-xl font-bold text-gray-900">เครื่องคำนวณสินเชื่อ</h2>
+              <p className="text-sm text-gray-500">คำนวณยอดผ่อนชำระรายเดือนเบื้องต้น</p>
             </div>
           </div>
           <button 
@@ -46,7 +46,7 @@ export function LoanCalculator() {
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Loan Amount (Baht): <span className="text-blue-600 font-bold ml-2">{formatCurrency(loanAmount)}</span>
+                วงเงินกู้ (บาท): <span className="text-blue-600 font-bold ml-2">{formatCurrency(loanAmount)}</span>
               </label>
               <input 
                 type="range" 
@@ -65,7 +65,7 @@ export function LoanCalculator() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Interest Rate (% per year): <span className="text-blue-600 font-bold ml-2">{interestRate}%</span>
+                อัตราดอกเบี้ย (% ต่อปี): <span className="text-blue-600 font-bold ml-2">{interestRate}%</span>
               </label>
               <input 
                 type="range" 
@@ -84,7 +84,7 @@ export function LoanCalculator() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Loan Term (Years): <span className="text-blue-600 font-bold ml-2">{years} Years</span>
+                ระยะเวลาผ่อนชำระ (ปี): <span className="text-blue-600 font-bold ml-2">{years} ปี</span>
               </label>
               <input 
                 type="range" 
@@ -96,29 +96,29 @@ export function LoanCalculator() {
                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
               />
               <div className="flex justify-between text-xs text-gray-400 mt-2">
-                <span>1 Year</span>
-                <span>40 Years</span>
+                <span>1 ปี</span>
+                <span>40 ปี</span>
               </div>
             </div>
           </div>
 
           <div className="bg-blue-50 rounded-2xl p-8 flex flex-col justify-center items-center text-center">
-            <p className="text-blue-600 font-medium mb-2 uppercase tracking-wider text-sm">Monthly Payment</p>
+            <p className="text-blue-600 font-medium mb-2 uppercase tracking-wider text-sm">ยอดผ่อนชำระต่อเดือน</p>
             <h3 className="text-4xl font-black text-blue-900 mb-6">
               {formatCurrency(Math.round(monthlyPayment))}
             </h3>
             
             <div className="w-full space-y-4 pt-6 border-t border-blue-100">
               <div className="flex justify-between text-sm">
-                <span className="text-blue-600/70">Total Principal</span>
+                <span className="text-blue-600/70">เงินต้นทั้งหมด</span>
                 <span className="font-bold text-blue-900">{formatCurrency(loanAmount)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-blue-600/70">Total Interest</span>
+                <span className="text-blue-600/70">ดอกเบี้ยทั้งหมด</span>
                 <span className="font-bold text-blue-900">{formatCurrency(Math.round(totalInterest))}</span>
               </div>
               <div className="flex justify-between text-sm pt-2 border-t border-blue-100">
-                <span className="text-blue-600 font-bold">Total Payment</span>
+                <span className="text-blue-600 font-bold">ยอดรวมที่ต้องจ่าย</span>
                 <span className="font-black text-blue-900">{formatCurrency(Math.round(totalPayment))}</span>
               </div>
             </div>
@@ -129,7 +129,7 @@ export function LoanCalculator() {
       <div className="mt-6 p-4 bg-yellow-50 border border-yellow-100 rounded-xl flex gap-3">
         <div className="w-6 h-6 bg-yellow-500 text-white rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold">!</div>
         <p className="text-sm text-yellow-800">
-          * This calculation is an estimate only. Actual interest rates and conditions depend on each financial institution.
+          * การคำนวณนี้เป็นการประมาณการเบื้องต้นเท่านั้น อัตราดอกเบี้ยและเงื่อนไขจริงขึ้นอยู่กับแต่ละสถาบันการเงิน
         </p>
       </div>
     </div>

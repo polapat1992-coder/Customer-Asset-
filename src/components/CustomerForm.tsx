@@ -184,7 +184,7 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
   };
 
   return (
-    <Dialog isOpen={isOpen} onClose={onClose} title={initialData ? "Edit Customer Info" : "Add New Customer"} maxWidth="max-w-xl">
+    <Dialog isOpen={isOpen} onClose={onClose} title={initialData ? "แก้ไขข้อมูลลูกค้า" : "เพิ่มลูกค้าใหม่"} maxWidth="max-w-xl">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-4 space-y-3 mb-6">
           <div className="flex items-center justify-between">
@@ -264,24 +264,24 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
             className="hidden"
             accept="image/*"
           />
-          <p className="text-xs text-gray-500 mt-2">Customer Profile Picture</p>
+          <p className="text-xs text-gray-500 mt-2">รูปโปรไฟล์ลูกค้า</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
             <label className="block text-sm font-medium text-gray-700 mb-1 flex justify-between items-center">
-              <span>Full Name</span>
+              <span>ชื่อ-นามสกุล</span>
               {isContactPickerSupported() ? (
                 <button
                   type="button"
                   onClick={handleSelectContact}
                   className="text-xs text-blue-600 hover:text-blue-700 flex items-center font-normal"
                 >
-                  <Contact className="w-3 h-3 mr-1" /> Select from Contacts
+                  <Contact className="w-3 h-3 mr-1" /> เลือกจากรายชื่อติดต่อ
                 </button>
               ) : isBrowserSupportedButInIframe() ? (
                 <span className="text-[10px] text-gray-400 font-normal italic">
-                  Open in new tab to select from contacts
+                  เปิดในแท็บใหม่เพื่อเลือกจากรายชื่อติดต่อ
                 </span>
               ) : null}
             </label>
@@ -295,7 +295,7 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">เบอร์โทรศัพท์</label>
             <input 
               required
               type="tel" 
@@ -306,29 +306,29 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Line ID (Optional)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Line ID (ไม่บังคับ)</label>
             <input 
               type="text" 
               name="lineId"
               value={formData.lineId || ''}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none" 
-              placeholder="e.g., line_id_123"
+              placeholder="เช่น line_id_123"
             />
           </div>
           <div className="sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Facebook Link (Optional)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">ลิงก์ Facebook (ไม่บังคับ)</label>
             <input 
               type="url" 
               name="facebookUrl"
               value={formData.facebookUrl || ''}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none" 
-              placeholder="e.g., https://facebook.com/username"
+              placeholder="เช่น https://facebook.com/username"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Occupation</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">อาชีพ</label>
             <input 
               required
               type="text" 
@@ -339,7 +339,7 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Income (THB)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">รายได้ต่อเดือน (บาท)</label>
             <input 
               required
               type="number" 
@@ -350,7 +350,7 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Additional Income (THB)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">รายได้เสริม (บาท)</label>
             <input 
               type="number" 
               name="additionalIncome"
@@ -360,7 +360,7 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Monthly Debt (THB)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">ภาระหนี้ต่อเดือน (บาท)</label>
             <input 
               type="number" 
               name="debtBurden"
@@ -371,7 +371,7 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
           </div>
           <div className="sm:col-span-2 bg-blue-50 p-3 rounded-md border border-blue-100">
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium text-blue-800">Net Remaining Income (Incl. Co-borrowers):</span>
+              <span className="text-sm font-medium text-blue-800">รายได้สุทธิคงเหลือ (รวมผู้กู้ร่วม):</span>
               <span className="text-lg font-bold text-blue-600">
                 {new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', minimumFractionDigits: 0 }).format(
                   (formData.income || 0) + (formData.additionalIncome || 0) + (formData.coBorrowers || []).reduce((sum, cb) => sum + (cb.income || 0), 0) - (formData.debtBurden || 0)
@@ -380,38 +380,38 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Credit Bureau (Grade)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">เครดิตบูโร (เกรด)</label>
             <select 
               name="creditScore"
               value={formData.creditScore}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none"
             >
-              <option value="Excellent">Excellent</option>
-              <option value="Good">Good</option>
-              <option value="Fair">Fair</option>
-              <option value="Poor">Poor</option>
+              <option value="Excellent">ดีเยี่ยม (Excellent)</option>
+              <option value="Good">ดี (Good)</option>
+              <option value="Fair">พอใช้ (Fair)</option>
+              <option value="Poor">ต้องปรับปรุง (Poor)</option>
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Credit Bureau Status Code</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">รหัสสถานะเครดิตบูโร</label>
             <input 
               type="text" 
               name="ncbCode"
-              placeholder="e.g., 010, 020"
+              placeholder="เช่น 010, 020"
               value={formData.ncbCode || ''}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none" 
             />
           </div>
           <div className="sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Credit Status Description</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">คำอธิบายสถานะเครดิต</label>
             <div className="w-full px-3 py-2 border rounded-md bg-gray-50 text-gray-600 text-sm min-h-[42px] flex items-center">
-              {formData.ncbCode ? getNcbDescription(formData.ncbCode) : 'Please enter status code'}
+              {formData.ncbCode ? getNcbDescription(formData.ncbCode) : 'กรุณาระบุรหัสสถานะ'}
             </div>
           </div>
           <div className="sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Interested Properties (Select multiple)</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">ทรัพย์สินที่สนใจ (เลือกได้หลายรายการ)</label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-40 overflow-y-auto p-3 border rounded-md bg-gray-50">
               {properties.map(p => (
                 <label key={p.id} className="flex items-center space-x-2 cursor-pointer hover:bg-white p-1 rounded transition-colors">
@@ -431,27 +431,27 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
                 </label>
               ))}
               {properties.length === 0 && (
-                <p className="text-xs text-gray-400 italic col-span-2">No property data available</p>
+                <p className="text-xs text-gray-400 italic col-span-2">ไม่มีข้อมูลทรัพย์สิน</p>
               )}
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Partner / Referrer</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">พาร์ทเนอร์ / ผู้แนะนำ</label>
             <select 
               name="partnerId"
               value={formData.partnerId}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none"
             >
-              <option value="">-- Select Partner --</option>
+              <option value="">-- เลือกพาร์ทเนอร์ --</option>
               {partners.map(p => (
-                <option key={p.id} value={p.id}>{p.name} ({p.bankName || 'No bank specified'})</option>
+                <option key={p.id} value={p.id}>{p.name} ({p.bankName || 'ไม่ระบุธนาคาร'})</option>
               ))}
             </select>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
-              <Landmark className="w-4 h-4 mr-1.5 text-purple-500" /> Bank Officer
+              <Landmark className="w-4 h-4 mr-1.5 text-purple-500" /> เจ้าหน้าที่ธนาคาร
             </label>
             <select 
               name="bankOfficerId"
@@ -459,27 +459,27 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none"
             >
-              <option value="">-- Select Officer --</option>
+              <option value="">-- เลือกเจ้าหน้าที่ --</option>
               {bankOfficers.map(bo => (
                 <option key={bo.id} value={bo.id}>{bo.name} ({bo.bankName})</option>
               ))}
             </select>
           </div>
           <div className="sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Loan Status</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">สถานะสินเชื่อ</label>
             <select 
               name="loanStatus"
               value={formData.loanStatus}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none"
             >
-              <option value="NEW">New Customer</option>
-              <option value="DOCUMENT_COLLECTION">Collecting Documents</option>
+              <option value="NEW">ลูกค้าใหม่</option>
+              <option value="DOCUMENT_COLLECTION">กำลังเก็บเอกสาร</option>
               <option value="PRE_APPROVE">Pre-Approved</option>
-              <option value="SUBMITTED">Submitted</option>
-              <option value="APPROVED">Approved</option>
-              <option value="REJECTED">Rejected</option>
-              <option value="TRANSFERRED">Transferred</option>
+              <option value="SUBMITTED">ยื่นกู้แล้ว</option>
+              <option value="APPROVED">อนุมัติแล้ว</option>
+              <option value="REJECTED">ไม่ผ่าน</option>
+              <option value="TRANSFERRED">โอนกรรมสิทธิ์แล้ว</option>
             </select>
           </div>
 
@@ -487,14 +487,14 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
           <div className="sm:col-span-2 border-t pt-4 mt-2">
             <div className="flex justify-between items-center mb-4">
               <h4 className="text-sm font-bold text-gray-900 flex items-center">
-                <Users className="w-4 h-4 mr-2 text-blue-500" /> Co-Borrower Info
+                <Users className="w-4 h-4 mr-2 text-blue-500" /> ข้อมูลผู้กู้ร่วม
               </h4>
               <button
                 type="button"
                 onClick={addCoBorrower}
                 className="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded hover:bg-blue-100 transition-colors flex items-center"
               >
-                <Plus className="w-3 h-3 mr-1" /> Add Co-Borrower
+                <Plus className="w-3 h-3 mr-1" /> เพิ่มผู้กู้ร่วม
               </button>
             </div>
 
@@ -508,23 +508,23 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
-                  <p className="text-xs font-bold text-gray-400 uppercase">Co-Borrower #{index + 1}</p>
+                  <p className="text-xs font-bold text-gray-400 uppercase">ผู้กู้ร่วม #{index + 1}</p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="sm:col-span-2">
                       <label className="block text-[10px] font-bold text-gray-500 uppercase flex justify-between items-center">
-                        <span>Full Name</span>
+                        <span>ชื่อ-นามสกุล</span>
                         {isContactPickerSupported() ? (
                           <button
                             type="button"
                             onClick={() => handleCoBorrowerContact(cb.id)}
                             className="text-[10px] text-blue-600 hover:text-blue-700 flex items-center font-normal lowercase"
                           >
-                            <Contact className="w-2.5 h-2.5 mr-1" /> Select from Contacts
+                            <Contact className="w-2.5 h-2.5 mr-1" /> เลือกจากรายชื่อติดต่อ
                           </button>
                         ) : isBrowserSupportedButInIframe() ? (
                           <span className="text-[8px] text-gray-400 font-normal italic lowercase">
-                            Open in new tab to select from contacts
+                            เปิดในแท็บใหม่เพื่อเลือกจากรายชื่อติดต่อ
                           </span>
                         ) : null}
                       </label>
@@ -536,7 +536,7 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-gray-500 uppercase">Phone Number</label>
+                      <label className="block text-[10px] font-bold text-gray-500 uppercase">เบอร์โทรศัพท์</label>
                       <input 
                         type="tel" 
                         value={cb.phone}
@@ -545,17 +545,17 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-gray-500 uppercase">Relationship</label>
+                      <label className="block text-[10px] font-bold text-gray-500 uppercase">ความสัมพันธ์</label>
                       <input 
                         type="text" 
                         value={cb.relation}
-                        placeholder="e.g., Spouse, Parent"
+                        placeholder="เช่น คู่สมรส, บุตร"
                         onChange={(e) => handleCoBorrowerChange(cb.id, 'relation', e.target.value)}
                         className="w-full px-2 py-1.5 text-sm border rounded focus:ring-1 focus:ring-blue-500 outline-none" 
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-gray-500 uppercase">Occupation</label>
+                      <label className="block text-[10px] font-bold text-gray-500 uppercase">อาชีพ</label>
                       <input 
                         type="text" 
                         value={cb.occupation}
@@ -564,7 +564,7 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-gray-500 uppercase">Monthly Income</label>
+                      <label className="block text-[10px] font-bold text-gray-500 uppercase">รายได้ต่อเดือน</label>
                       <input 
                         type="number" 
                         value={cb.income}
@@ -576,7 +576,7 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
                 </div>
               ))}
               {(!formData.coBorrowers || formData.coBorrowers.length === 0) && (
-                <p className="text-xs text-gray-400 italic text-center py-2">No co-borrower info</p>
+                <p className="text-xs text-gray-400 italic text-center py-2">ไม่มีข้อมูลผู้กู้ร่วม</p>
               )}
             </div>
           </div>
@@ -588,13 +588,13 @@ export function CustomerForm({ isOpen, onClose, onSubmit, initialData, propertie
             onClick={onClose}
             className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
           >
-            Cancel
+            ยกเลิก
           </button>
           <button 
             type="submit"
             className="px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
           >
-            Save Info
+            บันทึกข้อมูล
           </button>
         </div>
       </form>

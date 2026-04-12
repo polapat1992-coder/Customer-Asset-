@@ -26,7 +26,7 @@ export function Header({ notifications, onSearch, onOpenNotifications, onMenuCli
               <Landmark className="w-5 h-5 text-white" />
             </div>
             <h1 className="text-xl font-extrabold text-slate-900 hidden sm:block tracking-tight">
-              Broker<span className="text-blue-600">CRM</span>
+              โบรกเกอร์<span className="text-blue-600">CRM</span>
             </h1>
           </div>
         </div>
@@ -36,7 +36,7 @@ export function Header({ notifications, onSearch, onOpenNotifications, onMenuCli
             <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" />
             <input 
               type="text"
-              placeholder="Search customers, properties, or appointments..."
+              placeholder="ค้นหาลูกค้า, ทรัพย์สิน หรือนัดหมาย..."
               onChange={(e) => onSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-2xl bg-slate-50/50 focus:bg-white focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all text-sm"
             />
@@ -57,7 +57,7 @@ export function Header({ notifications, onSearch, onOpenNotifications, onMenuCli
           <div className="flex items-center gap-3 pl-1">
             <div className="hidden md:block text-right">
               <p className="text-xs font-bold text-slate-900">Polapat R.</p>
-              <p className="text-[10px] font-medium text-slate-500">Senior Broker</p>
+              <p className="text-[10px] font-medium text-slate-500">นายหน้าอาวุโส</p>
             </div>
             <div className="w-9 h-9 bg-slate-900 text-white rounded-2xl flex items-center justify-center font-bold text-xs shadow-lg shadow-slate-200">
               PR
